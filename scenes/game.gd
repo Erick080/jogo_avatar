@@ -20,12 +20,6 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	print("Timer!")
 
-# Callback chamado quando o jogador saltar (signal)
-func _on_anim_player_jumped() -> void:
-	#print("Jumped!")
-	gameScore += 1
-	print("Jumped: "+str(gameScore))	
-	scoreLabel.text = "Score: " + str(gameScore)
 
 # Chamada através de call_group
 func updateScore():

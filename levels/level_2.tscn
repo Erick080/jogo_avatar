@@ -30,10 +30,9 @@ size = Vector2(43, 41)
 
 [node name="AnimPlayer" parent="." instance=ExtResource("1_703kb")]
 position = Vector2(1024, 82)
-gravity = 3500.0
 metadata/_edit_group_ = true
 
-[node name="Camera2D" parent="AnimPlayer" index="2"]
+[node name="Camera2D" parent="AnimPlayer" index="1"]
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

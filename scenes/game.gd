@@ -7,10 +7,12 @@ var sceneLimit : Marker2D
 @onready var music := $Music
 
 var currentScene = null
-
+var currentLevel = 0
+var levelPath = "res://levels/level_{lvl}.tscn"
 # Script principal do jogo
 
 func _ready() -> void:
+	goto_scene(levelPath.format({"lvl":currentLevel + 1}))
 	sceneLimit = $Level/SceneLimit
 	player = $Level/AnimPlayer
 	#print(sceneLimit.position)
@@ -38,9 +40,9 @@ func _physics_process(delta: float) -> void:
 		print("Jogador saiu!")
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 		
-	# Pressione X para trocar para a segunda fase
+	# Pressione X para trocar para a proxima fase
 	if Input.is_action_just_pressed("change"):
-		call_deferred("goto_scene", "res://levels/level_2.tscn")
+		call_deferred("goto_scene",levelPath.format({"lvl":currentLevel + 1}))
 		
 	# Pressione F para ligar/desligar o filtro passa-baixa
 	if Input.is_action_just_pressed("filter"):
@@ -51,9 +53,11 @@ func _physics_process(delta: float) -> void:
 			lowpass.cutoff_hz = 500
 	
 func goto_scene(path: String):
-	$Level.free()	
+	if (currentLevel != 0):
+		$Level.free()	
 	var res := ResourceLoader.load(path)
 	currentScene = res.instantiate()	
 	#player = get_child(0).get_node("AnimPlayer")
 	add_child(currentScene)
 	sceneLimit = null
+	currentLevel += 1

@@ -184,6 +184,7 @@ position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_g841h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_regxu")
@@ -191,6 +192,7 @@ volume_db = -14.054
 bus = &"SFX"
 
 [node name="AangSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
 animation = &"run_left"

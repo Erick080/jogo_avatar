@@ -134,7 +134,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ceosb")
 }],
-"loop": false,
+"loop": true,
 "name": &"atk_air",
 "speed": 5.0
 }, {
@@ -349,5 +349,3 @@ centered = false
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kt7kk")
 animation = &"air"
-
-[connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]

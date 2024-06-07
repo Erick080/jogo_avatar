@@ -26,11 +26,11 @@ func get_atk_input():
 func animate():
 	if attacking == true:
 		sprite.play("atk_air")
-#		element.position.y = sprite.position.y
-#		element.position.x = sprite.position.x + 5 
-#		element.play("air")
-		await sprite.animation_finished
-#		element.stop()
+		if sprite.frame == 4:
+			$ElementSprite.z_index = 1
+			$ElementSprite.play("test")
+		await $ElementSprite.animation_finished
+		$ElementSprite.z_index = 0
 		attacking = false
 	elif velocity.x > 0:
 		sprite.play("run_right")

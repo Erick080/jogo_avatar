@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 300.0
+@export var speed = 400.0
 @onready var sprite = $AangSprite
 @onready var elementSprite = load("ElementSprite")
 #@onready var box := preload("res://objects/box.tscn"
@@ -13,8 +13,11 @@ var element
 	
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	print(input_direction)
-	velocity = input_direction * speed
+	#print(input_direction)
+	if attacking:
+		velocity = input_direction * 0
+	else: 
+		velocity = input_direction * speed
 	
 func get_atk_input():
 	if Input.is_key_pressed(KEY_E):
@@ -29,24 +32,22 @@ func animate():
 		await sprite.animation_finished
 #		element.stop()
 		attacking = false
-	elif velocity.x > 0:		
+	elif velocity.x > 0:
 		sprite.play("run_right")
 	elif velocity.x < 0: 
 		sprite.play("run_left")
 	elif velocity.y > 0:
-		sprite.play("stance")
+		sprite.play("run_left")
 	elif velocity.y < 0:
-		sprite.play("stance")	
-	
+		sprite.play("run_right")	
 	else:
 		sprite.play("stance")
 			
 
 	
 func move_8way(delta):
-	if attacking == false:
-		get_8way_input()
-		get_atk_input()
+	get_8way_input()
+	get_atk_input()
 	animate()
 	#move_and_slide()
 	var collision_info = move_and_collide(velocity * delta)

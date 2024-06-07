@@ -54,9 +54,9 @@ func _physics_process(delta: float) -> void:
 	
 func goto_scene(path: String):
 	if (currentLevel != 0):
-		$Level.free()	
+		$Level.free()
 	var res := ResourceLoader.load(path)
-	currentScene = res.instantiate()	
+	currentScene = res.instantiate()
 	#player = get_child(0).get_node("AnimPlayer")
 	add_child(currentScene)
 	sceneLimit = null

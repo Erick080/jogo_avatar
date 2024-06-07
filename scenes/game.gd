@@ -36,9 +36,6 @@ func _physics_process(delta: float) -> void:
 		sceneLimit = $Level/SceneLimit		
 		#print("sceneLimit: ", sceneLimit)
 		#print("player: ", player)
-	if player.position.y > sceneLimit.position.y:
-		print("Jogador saiu!")
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 		
 	# Pressione X para trocar para a proxima fase
 	if Input.is_action_just_pressed("change"):

@@ -4,18 +4,14 @@ extends CharacterBody2D
 @onready var sprite = $AangSprite
 @onready var elementSprite = load("ElementSprite")
 signal attack(ultima_pos)
-signal teste
-#@onready var box := preload("res://objects/box.tscn"
 @export var box : PackedScene
 var attacking = false
+signal teste
 var element
 var ultima_posicao = -1
-#func _ready() -> void:
-#	element = elementSprite.instance()
 	
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	#print(input_direction)
 	if attacking:
 		velocity = input_direction * 0
 	else: 
@@ -47,33 +43,33 @@ func animate():
 		sprite.play("run_right")
 		ultima_posicao = 1
 	elif velocity.x < 0:
-		$AangSprite.flip_h = false 
-		sprite.play("run_left")
+		$AangSprite.flip_h = true 
+		sprite.play("run_right")
 		ultima_posicao = 0
-
-	elif velocity.y > 0:
-		$AangSprite.flip_h = false
-		sprite.play("run_left")
-	elif velocity.y < 0:
-		$AangSprite.flip_h = false
-		sprite.play("run_right")	
+	elif velocity.y != 0:
+		if ultima_posicao == 0:	
+			$AangSprite.flip_h = true
+		else:
+			$AangSprite.flip_h = false
+		sprite.play("run_right")
 	else:
 		if ultima_posicao == 0:	
 			$AangSprite.flip_h = true
+		else:
+			$AangSprite.flip_h = false
 		sprite.play("stance")
-			
-
-	
+		
+var aux_count = 0
 func move_8way(delta):
 	get_8way_input()
 	get_atk_input()
 	animate()
-	#move_and_slide()
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
-		velocity = velocity.bounce(collision_info.get_normal())
-		move_and_collide(velocity * delta * 10)
-
+		#velocity = velocity.bounce(collision_info.get_normal())
+		#move_and_collide(velocity * delta * 10)
+		aux_count+=1
+		#print(aux_count)
 	
 func _physics_process(delta):
 	move_8way(delta)

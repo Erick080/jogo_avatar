@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export var speed = 400.0
 @onready var sprite = $AangSprite
 @onready var elementSprite = load("ElementSprite")
+signal attack(ultima_pos)
+signal teste
 #@onready var box := preload("res://objects/box.tscn"
 @export var box : PackedScene
 var attacking = false
 var element
-
+var ultima_posicao = -1
 #func _ready() -> void:
 #	element = elementSprite.instance()
 	
@@ -27,20 +29,37 @@ func animate():
 	if attacking == true:
 		sprite.play("atk_air")
 		if sprite.frame == 4:
+			if ultima_posicao == 0:
+				$ElementSprite.transform = $AtkLeftMarker.transform
+				$ElementSprite.flip_h = true
+			else:
+				$ElementSprite.transform = $AtkRightMarker.transform
+				$ElementSprite.flip_h = false
 			$ElementSprite.z_index = 1
 			$ElementSprite.play("test")
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
+		attack.emit(ultima_posicao)
+		teste.emit()
 		attacking = false
 	elif velocity.x > 0:
+		$AangSprite.flip_h = false
 		sprite.play("run_right")
-	elif velocity.x < 0: 
+		ultima_posicao = 1
+	elif velocity.x < 0:
+		$AangSprite.flip_h = false 
 		sprite.play("run_left")
+		ultima_posicao = 0
+
 	elif velocity.y > 0:
+		$AangSprite.flip_h = false
 		sprite.play("run_left")
 	elif velocity.y < 0:
+		$AangSprite.flip_h = false
 		sprite.play("run_right")	
 	else:
+		if ultima_posicao == 0:	
+			$AangSprite.flip_h = true
 		sprite.play("stance")
 			
 

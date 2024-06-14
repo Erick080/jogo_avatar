@@ -17,7 +17,6 @@ offset_bottom = 33.0
 theme_override_fonts/font = ExtResource("9_d35he")
 theme_override_font_sizes/font_size = 50
 text = "Score : 0"
-metadata/_edit_use_anchors_ = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-248, 270)

@@ -1,12 +1,13 @@
-[gd_scene load_steps=67 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=66 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
+[ext_resource type="PackedScene" uid="uid://b6y42ctqd34h6" path="res://objects/box.tscn" id="2_3wqxn"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
 [ext_resource type="Texture2D" uid="uid://dkcvm2j6wce8j" path="res://sprites/runleft.png" id="4_cevyp"]
+[ext_resource type="AudioStream" uid="uid://cmhdwxcekhkgx" path="res://SFX/jump1.ogg" id="4_regxu"]
 [ext_resource type="Texture2D" uid="uid://b1i11davsn514" path="res://sprites/run4.png" id="5_it53o"]
 [ext_resource type="Texture2D" uid="uid://ukx7xcc7lph6" path="res://sprites/stance2.png" id="6_0gkee"]
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
-[ext_resource type="Script" path="res://scenes/Area2DLeft.gd" id="9_c5key"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
 size = Vector2(46, 96)
@@ -425,20 +426,20 @@ animations = [{
 "speed": 26.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok46s"]
-size = Vector2(68, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7me4l"]
-size = Vector2(69, 20)
-
 [node name="AnimPlayer" type="CharacterBody2D"]
 script = ExtResource("1_qj2q4")
+box = ExtResource("2_3wqxn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g841h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.7, 0.7)
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_regxu")
+volume_db = -14.054
+bus = &"SFX"
 
 [node name="AangSprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -447,29 +448,16 @@ sprite_frames = SubResource("SpriteFrames_54ssq")
 animation = &"stance"
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(81, -4)
+position = Vector2(83, -6)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
 animation = &"test"
 
 [node name="AtkLeftMarker" type="Marker2D" parent="."]
-position = Vector2(-86, -3)
-gizmo_extents = 176.9
-
-[node name="Area2DLeft" type="Area2D" parent="AtkLeftMarker"]
-script = ExtResource("9_c5key")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkLeftMarker/Area2DLeft"]
-position = Vector2(24, 0)
-shape = SubResource("RectangleShape2D_ok46s")
+position = Vector2(42, -5)
+gizmo_extents = 53.8
 
 [node name="AtkRightMarker" type="Marker2D" parent="."]
-position = Vector2(88, -3)
+position = Vector2(-41, -5)
 gizmo_extents = 58.4
-
-[node name="Area2DRight" type="Area2D" parent="AtkRightMarker"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkRightMarker/Area2DRight"]
-position = Vector2(-24.5, 0)
-shape = SubResource("RectangleShape2D_7me4l")
 
 [connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]

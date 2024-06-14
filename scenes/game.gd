@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	# Pressione X para trocar para a proxima fase
 	if Input.is_action_just_pressed("change"):
 		call_deferred("goto_scene",levelPath.format({"lvl":currentLevel + 1}))
-		
+				
 	# Pressione F para ligar/desligar o filtro passa-baixa
 	if Input.is_action_just_pressed("filter"):
 		var lowpass := AudioServer.get_bus_effect(1, 0) as AudioEffectLowPassFilter # 1-Music, 0-Low Pass (primeiro efeito)
@@ -58,3 +58,8 @@ func goto_scene(path: String):
 	add_child(currentScene)
 	sceneLimit = null
 	currentLevel += 1
+
+
+func _on_level_level_over():
+	print('level over')
+	pass # Replace with function body.

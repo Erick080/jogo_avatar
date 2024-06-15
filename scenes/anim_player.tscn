@@ -1,16 +1,15 @@
-[gd_scene load_steps=68 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=67 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
 [ext_resource type="Texture2D" uid="uid://dkcvm2j6wce8j" path="res://sprites/runleft.png" id="4_cevyp"]
 [ext_resource type="Texture2D" uid="uid://b1i11davsn514" path="res://sprites/run4.png" id="5_it53o"]
 [ext_resource type="Texture2D" uid="uid://ukx7xcc7lph6" path="res://sprites/stance2.png" id="6_0gkee"]
-[ext_resource type="Script" path="res://scenes/death_handler.gd" id="6_batrv"]
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
 [ext_resource type="Script" path="res://scenes/Area2DLeft.gd" id="9_c5key"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
-size = Vector2(45, 75)
+size = Vector2(46, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q28s6"]
 atlas = ExtResource("4_4j5us")
@@ -436,7 +435,6 @@ size = Vector2(69, 20)
 script = ExtResource("1_qj2q4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_g841h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -448,10 +446,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
 animation = &"stance"
 
-[node name="DeathHandler" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("6_batrv")
-parent = NodePath("..")
-
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(81, -4)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
@@ -462,6 +456,7 @@ position = Vector2(-86, -3)
 gizmo_extents = 176.9
 
 [node name="Area2DLeft" type="Area2D" parent="AtkLeftMarker"]
+monitoring = false
 script = ExtResource("9_c5key")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkLeftMarker/Area2DLeft"]
@@ -473,6 +468,7 @@ position = Vector2(88, -3)
 gizmo_extents = 58.4
 
 [node name="Area2DRight" type="Area2D" parent="AtkRightMarker"]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkRightMarker/Area2DRight"]
 position = Vector2(-24.5, 0)

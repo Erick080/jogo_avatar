@@ -1,23 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwos3v6di3ijs"]
+[gd_scene load_steps=3 format=3 uid="uid://dwos3v6di3ijs"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ikpnh"]
 [ext_resource type="AudioStream" uid="uid://7aytyxh00lqr" path="res://SFX/Chiptune_Adventures_1.ogg" id="3_j5fss"]
-[ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="9_d35he"]
 
 [node name="Game" type="Node2D" groups=["hud"]]
 script = ExtResource("1_ikpnh")
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="ScoreLabel" type="Label" parent="HUD"]
-offset_left = 13.0
-offset_top = 10.0
-offset_right = 53.0
-offset_bottom = 33.0
-theme_override_fonts/font = ExtResource("9_d35he")
-theme_override_font_sizes/font_size = 50
-text = "Score : 0"
-metadata/_edit_use_anchors_ = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-248, 270)

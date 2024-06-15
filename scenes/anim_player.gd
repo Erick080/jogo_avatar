@@ -28,16 +28,19 @@ func animate():
 			if ultima_posicao == 0:
 				$ElementSprite.transform = $AtkLeftMarker.transform
 				$ElementSprite.flip_h = true
+				$AtkLeftMarker/Area2DLeft.monitoring = true
 			else:
 				$ElementSprite.transform = $AtkRightMarker.transform
 				$ElementSprite.flip_h = false
+				$AtkRightMarker/Area2DRight.monitoring = true
 			$ElementSprite.z_index = 1
 			$ElementSprite.play("test")
+		
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
-		attack.emit(ultima_posicao)
-		teste.emit()
 		attacking = false
+		$AtkLeftMarker/Area2DLeft.monitoring = false
+		$AtkRightMarker/Area2DRight.monitoring = false
 	elif velocity.x > 0:
 		$AangSprite.flip_h = false
 		sprite.play("run_right")

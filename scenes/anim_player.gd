@@ -76,4 +76,7 @@ func move_8way(delta):
 	
 func _physics_process(delta):
 	move_8way(delta)
-	
+
+func _on_area_2d_right_body_entered(body):
+	print(body.name)
+	body.queue_free()

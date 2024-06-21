@@ -203,10 +203,11 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="attack" from="AnimPlayer" to="." method="_on_anim_player_attack"]
 [connection signal="teste" from="AnimPlayer" to="." method="_on_anim_player_teste"]
-[connection signal="area_entered" from="AnimPlayer/AtkLeftMarker/Area2DLeft" to="." method="_on_area_2d_left_area_entered"]
 [connection signal="area_entered" from="AnimPlayer/AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_area_entered"]
 [connection signal="body_entered" from="AnimPlayer/AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]
 [connection signal="body_shape_entered" from="AnimPlayer/AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_shape_entered"]
+[connection signal="area_entered" from="AnimPlayer/AtkLeftMarker/Area2DLeft" to="." method="_on_area_2d_left_area_entered"]
+[connection signal="body_entered" from="AnimPlayer/AtkLeftMarker/Area2DLeft" to="AnimPlayer" method="_on_area_2d_left_body_entered"]
 
 [editable path="AnimPlayer"]
 [editable path="EnemyBody2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=51 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://b1i11davsn514" path="res://sprites/run4.png" id="5_it53o"]
 [ext_resource type="Texture2D" uid="uid://ukx7xcc7lph6" path="res://sprites/stance2.png" id="6_0gkee"]
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
-[ext_resource type="Script" path="res://scenes/Area2DLeft.gd" id="9_c5key"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
 size = Vector2(46, 96)
@@ -216,62 +215,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rw38q"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(0, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nejt7"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(99, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4jhu7"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(198, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nx8ia"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(297, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2ge2"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(396, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_afe4u"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(495, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xtt08"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(594, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pyf8p"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(693, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xnihs"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(792, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mxfrg"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(891, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n0swy"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(990, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7gv13"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(1089, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4is6u"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(1188, 0, 99, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgjp6"]
-atlas = ExtResource("8_yfas5")
-region = Rect2(1287, 0, 99, 46)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xpxa"]
 atlas = ExtResource("8_yfas5")
 region = Rect2(0, 0, 99, 48)
@@ -332,53 +275,6 @@ region = Rect2(1287, 0, 99, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rw38q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nejt7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4jhu7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nx8ia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u2ge2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_afe4u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xtt08")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pyf8p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xnihs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mxfrg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n0swy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7gv13")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4is6u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vgjp6")
-}],
-"loop": false,
-"name": &"air",
-"speed": 26.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_3xpxa")
 }, {
 "duration": 1.0,
@@ -425,11 +321,8 @@ animations = [{
 "speed": 26.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok46s"]
-size = Vector2(68, 20)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7me4l"]
-size = Vector2(69, 20)
+size = Vector2(98.5, 48)
 
 [node name="AnimPlayer" type="CharacterBody2D"]
 script = ExtResource("1_qj2q4")
@@ -442,26 +335,17 @@ zoom = Vector2(0.7, 0.7)
 
 [node name="AangSprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
+texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
 animation = &"stance"
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(81, -4)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
 animation = &"test"
-
-[node name="AtkLeftMarker" type="Marker2D" parent="."]
-position = Vector2(-86, -3)
-gizmo_extents = 176.9
-
-[node name="Area2DLeft" type="Area2D" parent="AtkLeftMarker"]
-monitoring = false
-script = ExtResource("9_c5key")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkLeftMarker/Area2DLeft"]
-position = Vector2(24, 0)
-shape = SubResource("RectangleShape2D_ok46s")
+frame = 8
 
 [node name="AtkRightMarker" type="Marker2D" parent="."]
 position = Vector2(88, -3)
@@ -471,7 +355,20 @@ gizmo_extents = 58.4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkRightMarker/Area2DRight"]
-position = Vector2(-24.5, 0)
+position = Vector2(-6.5, -1)
+shape = SubResource("RectangleShape2D_7me4l")
+
+[node name="AtkLeftMarker" type="Marker2D" parent="."]
+position = Vector2(-76, -3)
+gizmo_extents = 58.4
+
+[node name="Area2DLeft" type="Area2D" parent="AtkLeftMarker"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkLeftMarker/Area2DLeft"]
+position = Vector2(-6.5, -1)
 shape = SubResource("RectangleShape2D_7me4l")
 
 [connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]
+[connection signal="body_entered" from="AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]
+[connection signal="body_entered" from="AtkLeftMarker/Area2DLeft" to="." method="_on_area_2d_right_body_entered"]

@@ -13,12 +13,8 @@ func _updateScore():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if (gameScore > 5):
-	#	var nodes = get_children()
-	#	for n in nodes:
-	#		n.queue_free()
-		get_node("/root/Game").remove_child($Level)
-		get_parent().goto_scene('res://levels/level_2.tscn')
+	if (gameScore == 5):
+		$Timer2.start()
 	pass
 
 var aux_counter = 0
@@ -35,3 +31,8 @@ func _on_timer_timeout():
 		enemy_instance.position = $Enemy_Spawn1.position
 	else:
 		enemy_instance.position = $Enemy_Spawn2.position
+
+
+func _on_timer_2_timeout():
+	get_parent().goto_scene('res://levels/level_2.tscn')
+	pass # Replace with function body.

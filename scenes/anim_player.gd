@@ -8,6 +8,10 @@ var attacking = true
 var element
 var ultima_posicao = -1
 signal updateScore
+
+func _ready():
+	motion_mode = 1
+	pass
 	
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -76,8 +80,8 @@ func _physics_process(delta):
 	move_8way(delta)
 
 func _on_area_2d_right_body_entered(body):
-	print(body.name)
-	if (body.name == "EnemyBody2D"):
-		updateScore.emit()
-		pass
+	#print(body.name)
+	updateScore.emit()
+	body.queue_free()
+	
 	

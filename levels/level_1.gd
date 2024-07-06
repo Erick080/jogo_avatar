@@ -1,5 +1,4 @@
 extends Node
-
 @onready var enemy := load("res://scenes/enemy.tscn") 
 var sceneLimit : Marker2D
 var gameScore = 0
@@ -14,9 +13,10 @@ func _updateScore():
 	$HUD/ScoreLabel.text = "Score: " + str(gameScore) 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if (gameScore == 5):
-		get_parent().goto_scene('res://levels/level_2.tscn')
+func _process(_delta):
+	#if (gameScore == 5):
+		#get_parent().goto_scene('res://levels/level_2.tscn')
+	pass
 
 var aux_counter = 0
 func _on_area_2d_area_entered(area):
@@ -29,7 +29,6 @@ func _on_timer_timeout():
 	add_child(enemy_instance)
 	var random_number = rng.randi_range(0,1)
 	if random_number == 0:
-		enemy_instance.position = $EnemySpawn1.position
+		enemy_instance.position = $Enemy_Spawn1.position
 	else:
-		enemy_instance.position = $EnemySpawn2.position
-	pass # Replace with function body.
+		enemy_instance.position = $Enemy_Spawn2.position

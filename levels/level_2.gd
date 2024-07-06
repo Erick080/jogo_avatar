@@ -14,7 +14,7 @@ func _updateScore():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if (gameScore > 5):
+	if (gameScore >= 5):
 		get_parent().goto_scene('res://levels/level_3.tscn')
 	pass
 

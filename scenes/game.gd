@@ -7,11 +7,13 @@ var player : CharacterBody2D
 var currentScene = null
 var currentLevel = 0
 var levelPath = "res://levels/level_{lvl}.tscn"
+var level
 # Script principal do jogo
 
 func _ready() -> void:
 	goto_scene(levelPath.format({"lvl":currentLevel + 1}))
 	player = $Level/AnimPlayer
+	var level = get_node('Level')
 	#print(sceneLimit.position)
 	#music.play()
 
@@ -46,11 +48,12 @@ func _physics_process(delta: float) -> void:
 	
 func goto_scene(path: String):
 	if (currentLevel != 0):
-		$Level. queue_free()
+		level.queue_free()
 	var res := ResourceLoader.load(path)
 	currentScene = res.instantiate()
 	#player = get_child(0).get_node("AnimPlayer")
 	add_child(currentScene)
+	level = currentScene
 	currentLevel += 1
 
 func _on_level_level_over():

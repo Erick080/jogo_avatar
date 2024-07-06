@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
-size = Vector2(46, 96)
+size = Vector2(38, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q28s6"]
 atlas = ExtResource("4_4j5us")
@@ -322,12 +322,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7me4l"]
-size = Vector2(98.5, 48)
+size = Vector2(98.5, 43)
 
 [node name="AnimPlayer" type="CharacterBody2D"]
 script = ExtResource("1_qj2q4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_g841h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -355,7 +356,7 @@ gizmo_extents = 58.4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkRightMarker/Area2DRight"]
-position = Vector2(-6.5, -1)
+position = Vector2(-6.5, -1.5)
 shape = SubResource("RectangleShape2D_7me4l")
 
 [node name="AtkLeftMarker" type="Marker2D" parent="."]

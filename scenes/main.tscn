@@ -1,10 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://qu33qc61ro5x"]
+[gd_scene load_steps=3 format=3 uid="uid://b66njkx680g5j"]
 
-[ext_resource type="Script" path="res://scenes/Main.gd" id="1_l8hac"]
 [ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="2_xuufs"]
 
+[sub_resource type="GDScript" id="GDScript_l2ahq"]
+script/source = "extends Node2D
+
+var total : float = 0
+
+func _ready() -> void:
+	update_score(total)
+	
+func _process(delta: float) -> void:
+	#print(delta)
+	total += delta
+	update_score(total)
+
+func _input(event: InputEvent) -> void:
+	#print(event.as_text())
+	if event.is_action_pressed(\"ui_left\"):
+		print(\"Left arrow com callback _input\")
+	
+func update_score(current_score: float) -> void:
+	$Score.text = str(current_score	) # converte para string
+	
+"
+
 [node name="Main" type="Node2D"]
-script = ExtResource("1_l8hac")
+script = SubResource("GDScript_l2ahq")
 
 [node name="Score" type="Label" parent="."]
 offset_left = 48.0

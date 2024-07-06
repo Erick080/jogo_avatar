@@ -3,12 +3,11 @@ extends CharacterBody2D
 @export var speed = 400.0
 @onready var sprite = $AangSprite
 @onready var elementSprite = load("ElementSprite")
-signal attack(ultima_pos)
 @export var box : PackedScene
-var attacking = false
-signal teste
+var attacking = true
 var element
 var ultima_posicao = -1
+signal updateScore
 	
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -35,7 +34,6 @@ func animate():
 				$AtkRightMarker/Area2DRight.monitoring = true
 			$ElementSprite.z_index = 1
 			$ElementSprite.play("test")
-		
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
 		attacking = false
@@ -79,4 +77,7 @@ func _physics_process(delta):
 
 func _on_area_2d_right_body_entered(body):
 	print(body.name)
-	body.queue_free()
+	if (body.name == "EnemyBody2D"):
+		updateScore.emit()
+		pass
+	

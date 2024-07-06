@@ -4,7 +4,6 @@ var gameScore := 0
 @onready var scoreLabel := $HUD/ScoreLabel
 var player : CharacterBody2D
 var sceneLimit : Marker2D
-@onready var music := $Music
 
 var currentScene = null
 var currentLevel = 0

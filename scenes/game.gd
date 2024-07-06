@@ -3,7 +3,6 @@ extends Node2D
 var gameScore := 0
 @onready var scoreLabel := $HUD/ScoreLabel
 var player : CharacterBody2D
-var sceneLimit : Marker2D
 
 var currentScene = null
 var currentLevel = 0
@@ -12,7 +11,6 @@ var levelPath = "res://levels/level_{lvl}.tscn"
 
 func _ready() -> void:
 	goto_scene(levelPath.format({"lvl":currentLevel + 1}))
-	sceneLimit = $Level/SceneLimit
 	player = $Level/AnimPlayer
 	#print(sceneLimit.position)
 	#music.play()
@@ -29,8 +27,7 @@ func updateScore():
 	scoreLabel.text = "Score: " + str(gameScore)
 
 func _physics_process(delta: float) -> void:
-	if sceneLimit == null:
-		player = $Level/AnimPlayer
+	player = $Level/AnimPlayer
 		#sceneLimit = $Level/SceneLimit
 		#print("sceneLimit: ", sceneLimit)
 		#print("player: ", player)
@@ -54,7 +51,6 @@ func goto_scene(path: String):
 	currentScene = res.instantiate()
 	#player = get_child(0).get_node("AnimPlayer")
 	add_child(currentScene)
-	sceneLimit = null
 	currentLevel += 1
 
 func _on_level_level_over():

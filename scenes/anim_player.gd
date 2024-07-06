@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @export var speed = 400.0
 @onready var sprite = $AangSprite
-@onready var elementSprite = load("ElementSprite")
+@onready var elementSprite = $ElementSprite
 @export var box : PackedScene
-var attacking = true
+var attacking = false
 var element
 var ultima_posicao = -1
 signal updateScore

@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmawnqw2tjvp7"]
+[gd_scene load_steps=12 format=3 uid="uid://bmawnqw2tjvp7"]
 
 [ext_resource type="PackedScene" uid="uid://eq8k6of4kdut" path="res://scenes/anim_player.tscn" id="1_703kb"]
+[ext_resource type="Script" path="res://levels/level_2.gd" id="1_ms1a6"]
 [ext_resource type="Texture2D" uid="uid://jq6woxyd5af1" path="res://tilesets/set_a.png" id="2_5iayg"]
+[ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="3_crtau"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1o1p"]
 texture = ExtResource("2_5iayg")
@@ -117,7 +119,10 @@ size = Vector2(105.25, 1787.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uii3h"]
 size = Vector2(2539, 81)
 
+[sub_resource type="Theme" id="Theme_xbwh6"]
+
 [node name="Level" type="Node"]
+script = ExtResource("1_ms1a6")
 
 [node name="AnimPlayer" parent="." instance=ExtResource("1_703kb")]
 position = Vector2(1024, 82)
@@ -157,5 +162,33 @@ shape = SubResource("RectangleShape2D_71qrx")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1465.5, 1062)
 shape = SubResource("RectangleShape2D_uii3h")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="Enemy_Spawn1" type="Marker2D" parent="."]
+position = Vector2(1932, 24)
+
+[node name="Enemy_Spawn2" type="Marker2D" parent="."]
+position = Vector2(698, 578)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.5
+offset_right = 118.5
+offset_bottom = 61.0
+grow_horizontal = 2
+theme = SubResource("Theme_xbwh6")
+theme_override_fonts/font = ExtResource("3_crtau")
+theme_override_font_sizes/font_size = 50
+text = "Score : 0"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="AnimPlayer"]

@@ -8,7 +8,9 @@ func _ready():
 	$HUD/ScoreLabel.set("theme_override_colors/font_color", Color(1, 0, 0))
 	$AnimPlayer.updateScore.connect(_updateScore)
 	$AnimPlayer.gameOver.connect(gameOver)
-
+	$AnimPlayer.earth = true
+	$AnimPlayer.fire = false
+	
 func _updateScore():
 	gameScore = gameScore + 1
 	$HUD/ScoreLabel.text = "Score: " + str(gameScore) 
@@ -18,7 +20,12 @@ func gameOver():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if (gameScore >= 5):
+	#atualizar barra de cooldown aqui
+	$HUD/CooldownBar_Air.value = ($AnimPlayer/air_cooldown.time_left / $AnimPlayer/air_cooldown.wait_time) * 100
+	$HUD/CooldownBar_Earth.value = ($AnimPlayer/earth_cooldown.time_left / $AnimPlayer/earth_cooldown.wait_time) * 100
+	$HUD/CooldownBar_Water.value = ($AnimPlayer/water_cooldown.time_left / $AnimPlayer/water_cooldown.wait_time) * 100
+	$HUD/CooldownBar_Fire.value = ($AnimPlayer/fire_cooldown.time_left / $AnimPlayer/fire_cooldown.wait_time) * 100
+	if (gameScore >= 10):
 		get_parent().goto_scene('res://levels/level_3.tscn')
 	pass
 

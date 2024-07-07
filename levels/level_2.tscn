@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmawnqw2tjvp7"]
+[gd_scene load_steps=15 format=3 uid="uid://bmawnqw2tjvp7"]
 
 [ext_resource type="PackedScene" uid="uid://eq8k6of4kdut" path="res://scenes/anim_player.tscn" id="1_703kb"]
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_ms1a6"]
 [ext_resource type="Texture2D" uid="uid://jq6woxyd5af1" path="res://tilesets/set_a.png" id="2_5iayg"]
 [ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="3_crtau"]
+[ext_resource type="Texture2D" uid="uid://cyed1u3sqpbww" path="res://sprites/elements-removebg.png" id="5_27ekm"]
+[ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="6_uw7ga"]
+[ext_resource type="Texture2D" uid="uid://dkdqhlfsfmjpr" path="res://sprites/healthbar/no health.png" id="7_qkhfk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1o1p"]
 texture = ExtResource("2_5iayg")
@@ -119,7 +122,7 @@ size = Vector2(105.25, 1787.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uii3h"]
 size = Vector2(2539, 81)
 
-[sub_resource type="Theme" id="Theme_xbwh6"]
+[sub_resource type="Theme" id="Theme_cwfmv"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_ms1a6")
@@ -183,10 +186,77 @@ offset_left = -118.5
 offset_right = 118.5
 offset_bottom = 61.0
 grow_horizontal = 2
-theme = SubResource("Theme_xbwh6")
+theme = SubResource("Theme_cwfmv")
 theme_override_fonts/font = ExtResource("3_crtau")
 theme_override_font_sizes/font_size = 50
 text = "Score : 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD"]
+position = Vector2(1017, 522)
+scale = Vector2(0.722, 0.698)
+texture = ExtResource("5_27ekm")
+
+[node name="CooldownBar_Air" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 886.0
+offset_top = 575.0
+offset_right = 994.416
+offset_bottom = 570.912
+rotation = -1.5708
+scale = Vector2(0.8, 1)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("6_uw7ga")
+texture_progress = ExtResource("7_qkhfk")
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar_Earth" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 1129.0
+offset_top = 576.0
+offset_right = 1237.42
+offset_bottom = 571.912
+rotation = -1.5708
+scale = Vector2(0.8, 1)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("6_uw7ga")
+texture_progress = ExtResource("7_qkhfk")
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar_Water" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 962.0
+offset_top = 388.0
+offset_right = 1070.42
+offset_bottom = 383.912
+scale = Vector2(0.8, 1)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("6_uw7ga")
+texture_progress = ExtResource("7_qkhfk")
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar_Fire" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 966.0
+offset_top = 629.0
+offset_right = 1074.42
+offset_bottom = 624.912
+scale = Vector2(0.8, 1)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("6_uw7ga")
+texture_progress = ExtResource("7_qkhfk")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

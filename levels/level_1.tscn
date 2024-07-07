@@ -253,8 +253,10 @@ offset_bottom = 570.912
 rotation = -1.5708
 scale = Vector2(0.8, 1)
 value = 100.0
+fill_mode = 1
 texture_under = ExtResource("8_ffuox")
 texture_progress = ExtResource("8_1fs6y")
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar_Earth" type="TextureProgressBar" parent="HUD"]
 anchors_preset = -1
@@ -267,8 +269,10 @@ offset_bottom = 571.912
 rotation = -1.5708
 scale = Vector2(0.8, 1)
 value = 100.0
+fill_mode = 1
 texture_under = ExtResource("8_ffuox")
 texture_progress = ExtResource("8_1fs6y")
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar_Water" type="TextureProgressBar" parent="HUD"]
 anchors_preset = -1
@@ -280,8 +284,10 @@ offset_right = 1070.42
 offset_bottom = 383.912
 scale = Vector2(0.8, 1)
 value = 100.0
+fill_mode = 1
 texture_under = ExtResource("8_ffuox")
 texture_progress = ExtResource("8_1fs6y")
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar_Fire" type="TextureProgressBar" parent="HUD"]
 anchors_preset = -1
@@ -293,8 +299,10 @@ offset_right = 1074.42
 offset_bottom = 624.912
 scale = Vector2(0.8, 1)
 value = 100.0
+fill_mode = 1
 texture_under = ExtResource("8_ffuox")
 texture_progress = ExtResource("8_1fs6y")
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

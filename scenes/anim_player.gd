@@ -32,26 +32,27 @@ func get_8way_input():
 		velocity = input_direction * speed
 
 func get_atk_input():
-	if Input.is_key_pressed(KEY_LEFT):
-		if $air_cooldown.is_stopped():
-			attacking = true
-			current_element = 'air'
-			$air_cooldown.start()
-	elif Input.is_key_pressed(KEY_RIGHT):
-		if $earth_cooldown.is_stopped():
-			attacking = true
-			current_element = 'earth'
-			$earth_cooldown.start()
-	elif Input.is_key_pressed(KEY_UP):
-		if $water_cooldown.is_stopped():
-			attacking = true
-			current_element = 'water'
-			$water_cooldown.start()
-	elif Input.is_key_pressed(KEY_DOWN):
-		if $fire_cooldown.is_stopped():
-			attacking = true
-			current_element = 'fire'
-			$fire_cooldown.start()
+	if sprite.animation_finished:
+		if Input.is_key_pressed(KEY_LEFT):
+			if $air_cooldown.is_stopped():
+				attacking = true
+				current_element = 'air'
+				$air_cooldown.start()
+		elif Input.is_key_pressed(KEY_RIGHT):
+			if $earth_cooldown.is_stopped() and earth:
+				attacking = true
+				current_element = 'earth'
+				$earth_cooldown.start()
+		elif Input.is_key_pressed(KEY_UP):
+			if $water_cooldown.is_stopped():
+				attacking = true
+				current_element = 'water'
+				$water_cooldown.start()
+		elif Input.is_key_pressed(KEY_DOWN):
+			if $fire_cooldown.is_stopped() and fire:
+				attacking = true
+				current_element = 'fire'
+				$fire_cooldown.start()
 
 func updateHealth():
 	healthBar.value = currentHealth * 100 / maxHealth
@@ -99,6 +100,7 @@ func _on_area_2d_body_entered(body): #se ele tomou um hit
 func animate():
 	if attacking == true:
 		sprite.play(current_attack.format({"element":current_element}))
+		
 		var sfx = get_node(current_sfx.format({"element":current_element}))
 		if sprite.frame == 4:
 			if !sfx.playing:

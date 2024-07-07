@@ -65,7 +65,10 @@ func _on_area_2d_body_entered(body): #se ele tomou um hit
 func animate():
 	if attacking == true:
 		sprite.play("atk_air")
+		
 		if sprite.frame == 4:
+			if !$WindSFX.playing:
+				$WindSFX.play()
 			if ultima_posicao == 0:
 				$ElementSprite.transform = $AtkLeftMarker.transform
 				$ElementSprite.flip_h = true
@@ -79,23 +82,31 @@ func animate():
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
 		attacking = false
+		$WindSFX.stop()
 		$AtkLeftMarker/Area2DLeft.monitoring = false
 		$AtkRightMarker/Area2DRight.monitoring = false
 	elif velocity.x > 0:
+		if !$RunningGrassSFX.playing:
+			$RunningGrassSFX.play()
 		$AangSprite.flip_h = false
 		sprite.play("run_right")
 		ultima_posicao = 1
 	elif velocity.x < 0:
+		if !$RunningGrassSFX.playing:
+			$RunningGrassSFX.play()
 		$AangSprite.flip_h = true 
 		sprite.play("run_right")
 		ultima_posicao = 0
 	elif velocity.y != 0:
+		if !$RunningGrassSFX.playing:
+			$RunningGrassSFX.play()
 		if ultima_posicao == 0:	
 			$AangSprite.flip_h = true
 		else:
 			$AangSprite.flip_h = false
 		sprite.play("run_right")
 	else:
+		$RunningGrassSFX.stop()
 		if ultima_posicao == 0:	
 			$AangSprite.flip_h = true
 		else:

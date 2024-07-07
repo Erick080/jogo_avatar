@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=56 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bs1xiavomipgo" path="res://sprites/healthbar/no health bar.png" id="7_ykiev"]
 [ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="8_t1pca"]
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
+[ext_resource type="AudioStream" uid="uid://cjser5lfkt5gd" path="res://SFX/running-in-grass-6237.mp3" id="9_17d5g"]
+[ext_resource type="AudioStream" uid="uid://b40iiio3oc5w" path="res://SFX/shortest-wind.wav" id="10_gjkh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
 size = Vector2(46, 96)
@@ -355,7 +357,7 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
-animation = &"stance"
+animation = &"atk_air"
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -390,6 +392,13 @@ shape = SubResource("RectangleShape2D_7me4l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.5, 7.5)
 shape = SubResource("RectangleShape2D_tce35")
+
+[node name="RunningGrassSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_17d5g")
+
+[node name="WindSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_gjkh8")
+volume_db = 11.742
 
 [connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]
 [connection signal="body_entered" from="AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]

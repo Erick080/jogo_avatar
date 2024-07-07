@@ -1,18 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwos3v6di3ijs"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ikpnh"]
-[ext_resource type="AudioStream" uid="uid://7aytyxh00lqr" path="res://SFX/Chiptune_Adventures_1.ogg" id="3_j5fss"]
+[ext_resource type="AudioStream" uid="uid://cm54ff41mkwd8" path="res://Avatar_ The Last Airbender Theme.mp3" id="2_usvso"]
 
 [node name="Game" type="Node2D" groups=["hud"]]
 script = ExtResource("1_ikpnh")
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-248, 270)
-stream = ExtResource("3_j5fss")
-max_distance = 1000.0
-attenuation = 1.56917
-bus = &"Music"
-
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_usvso")
+volume_db = -20.8
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

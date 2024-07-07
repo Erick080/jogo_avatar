@@ -2,15 +2,18 @@ extends Node2D
 
 var gameScore := 0
 @onready var scoreLabel := $HUD/ScoreLabel
+@onready var musica = $Musica
 var player : CharacterBody2D
 
 var currentScene = null
 var currentLevel = 0
 var levelPath = "res://levels/level_{lvl}.tscn"
 var level
+
 # Script principal do jogo
 
 func _ready() -> void:
+	musica.play()
 	goto_scene(levelPath.format({"lvl":currentLevel + 1}))
 	player = $Level/AnimPlayer
 	player.gameOver

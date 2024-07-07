@@ -115,7 +115,7 @@ script = ExtResource("1_2obwe")
 position = Vector2(-512, 84)
 metadata/_edit_group_ = true
 
-[node name="Camera2D" parent="AnimPlayer" index="1"]
+[node name="Camera2D" parent="AnimPlayer" index="2"]
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -126,7 +126,7 @@ drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="AangSprite" parent="AnimPlayer" index="2"]
+[node name="AangSprite" parent="AnimPlayer" index="3"]
 animation = &"run_right"
 
 [node name="TileMap" type="TileMap" parent="."]

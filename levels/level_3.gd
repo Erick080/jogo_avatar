@@ -7,11 +7,15 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	$HUD/ScoreLabel.set("theme_override_colors/font_color", Color(0, 0, 1))
 	$AnimPlayer.updateScore.connect(_updateScore)
+	$AnimPlayer.gameOver.connect(gameOver)
 
 func _updateScore():
 	gameScore = gameScore + 1
 	$HUD/ScoreLabel.text = "Score: " + str(gameScore) 
 
+func gameOver():
+	get_parent().goto_scene('res://levels/game_over.tscn')
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if (gameScore > 5):

@@ -102,6 +102,7 @@ func verificaPosicao():
 			'earth':
 				$ElementSprite.transform = $EarthLeftMarker.transform
 				$EarthLeftMarker/Area2D.monitoring = true
+				$EarthLeftMarker.throw(0)
 			'water':
 				$ElementSprite.transform = $WaterLeftMarker.transform
 				$WaterLeftMarker/Area2D.monitoring = true
@@ -117,6 +118,7 @@ func verificaPosicao():
 			'earth':
 				$ElementSprite.transform = $EarthRightMarker.transform
 				$EarthRightMarker/Area2D.monitoring = true
+				$EarthRightMarker.throw(1)
 			'water':
 				$ElementSprite.transform = $WaterRightMarker.transform
 				$WaterRightMarker/Area2D.monitoring = true
@@ -131,7 +133,9 @@ func desligarAtaques():
 			$AirLeftMarker/Area2D.monitoring = false
 		'earth':
 			$EarthRightMarker/Area2D.monitoring = false
+			$EarthRightMarker.return_to_origin()
 			$EarthLeftMarker/Area2D.monitoring = false
+			$EarthLeftMarker.return_to_origin()
 		'water':
 			$WaterRightMarker/Area2D.monitoring = false
 			$WaterLeftMarker/Area2D.monitoring = false

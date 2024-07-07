@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=94 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://b40iiio3oc5w" path="res://SFX/shortest-wind.wav" id="10_gjkh8"]
 [ext_resource type="Texture2D" uid="uid://po5ppe22pmir" path="res://sprites/earth-attack-skill.png" id="11_dj1s0"]
 [ext_resource type="Texture2D" uid="uid://c6ken1s6e50ug" path="res://sprites/fire-attack-skill.png" id="12_sx3e5"]
+[ext_resource type="Script" path="res://scenes/EarthMarker.gd" id="15_y1a11"]
 [ext_resource type="AudioStream" uid="uid://cnh7ivf1mkoa8" path="res://SFX/rowing-wave-sound-1-151181.mp3" id="17_85cin"]
 [ext_resource type="AudioStream" uid="uid://c8k8kx075l35" path="res://SFX/fire-magic-6947.mp3" id="18_744q3"]
 [ext_resource type="AudioStream" uid="uid://dkteeea0q1bsm" path="res://SFX/small-rock-break-194553.mp3" id="19_iv0s6"]
@@ -634,6 +635,7 @@ shape = SubResource("CapsuleShape2D_sjlcu")
 
 [node name="EarthRightMarker" type="Marker2D" parent="."]
 position = Vector2(78, -12)
+script = ExtResource("15_y1a11")
 
 [node name="Area2D" type="Area2D" parent="EarthRightMarker"]
 monitoring = false
@@ -643,6 +645,7 @@ shape = SubResource("CapsuleShape2D_rs2jy")
 
 [node name="EarthLeftMarker" type="Marker2D" parent="."]
 position = Vector2(-78, -12)
+script = ExtResource("15_y1a11")
 
 [node name="Area2D" type="Area2D" parent="EarthLeftMarker"]
 monitoring = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3qqbnw5ymsjf"]
+[gd_scene load_steps=17 format=3 uid="uid://3qqbnw5ymsjf"]
 
 [ext_resource type="PackedScene" uid="uid://eq8k6of4kdut" path="res://scenes/anim_player.tscn" id="1_04jd4"]
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_vjwbh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dkkkfpd4b5g0d" path="res://tilesets/TX Tileset Grass.png" id="4_a6h47"]
 [ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="5_qcptw"]
 [ext_resource type="Texture2D" uid="uid://cyed1u3sqpbww" path="res://sprites/elements-removebg.png" id="6_wpa76"]
+[ext_resource type="Texture2D" uid="uid://dkdqhlfsfmjpr" path="res://sprites/healthbar/no health.png" id="8_1fs6y"]
+[ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="8_ffuox"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kp0u6"]
 texture = ExtResource("2_0iblj")
@@ -236,9 +238,63 @@ text = "Score : 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD"]
-position = Vector2(1017, 518)
-scale = Vector2(0.7, 0.7)
+position = Vector2(1017, 522)
+scale = Vector2(0.722, 0.698)
 texture = ExtResource("6_wpa76")
+
+[node name="CooldownBar_Air" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 886.0
+offset_top = 575.0
+offset_right = 994.416
+offset_bottom = 570.912
+rotation = -1.5708
+scale = Vector2(0.8, 1)
+value = 100.0
+texture_under = ExtResource("8_ffuox")
+texture_progress = ExtResource("8_1fs6y")
+
+[node name="CooldownBar_Earth" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 1129.0
+offset_top = 576.0
+offset_right = 1237.42
+offset_bottom = 571.912
+rotation = -1.5708
+scale = Vector2(0.8, 1)
+value = 100.0
+texture_under = ExtResource("8_ffuox")
+texture_progress = ExtResource("8_1fs6y")
+
+[node name="CooldownBar_Water" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 962.0
+offset_top = 388.0
+offset_right = 1070.42
+offset_bottom = 383.912
+scale = Vector2(0.8, 1)
+value = 100.0
+texture_under = ExtResource("8_ffuox")
+texture_progress = ExtResource("8_1fs6y")
+
+[node name="CooldownBar_Fire" type="TextureProgressBar" parent="HUD"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.031
+offset_left = 966.0
+offset_top = 629.0
+offset_right = 1074.42
+offset_bottom = 624.912
+scale = Vector2(0.8, 1)
+value = 100.0
+texture_under = ExtResource("8_ffuox")
+texture_progress = ExtResource("8_1fs6y")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

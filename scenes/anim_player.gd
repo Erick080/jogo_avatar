@@ -16,7 +16,7 @@ var current_element #elemento que o jogador seleciona para atacar
 var current_attack = "atk_{element}"
 var current_sfx = "{element}_SFX"
 var ultima_posicao = -1
-
+var earth_projectile_intact
 func _ready():
 	motion_mode = 1
 	pass
@@ -33,17 +33,25 @@ func get_8way_input():
 
 func get_atk_input():
 	if Input.is_key_pressed(KEY_LEFT):
-		attacking = true
-		current_element = 'air'
+		if $air_cooldown.is_stopped():
+			attacking = true
+			current_element = 'air'
+			$air_cooldown.start()
 	elif Input.is_key_pressed(KEY_RIGHT):
-		attacking = true
-		current_element = 'earth'
+		if $earth_cooldown.is_stopped():
+			attacking = true
+			current_element = 'earth'
+			$earth_cooldown.start()
 	elif Input.is_key_pressed(KEY_UP):
-		attacking = true
-		current_element = 'water'
+		if $water_cooldown.is_stopped():
+			attacking = true
+			current_element = 'water'
+			$water_cooldown.start()
 	elif Input.is_key_pressed(KEY_DOWN):
-		attacking = true
-		current_element = 'fire'
+		if $fire_cooldown.is_stopped():
+			attacking = true
+			current_element = 'fire'
+			$fire_cooldown.start()
 
 func updateHealth():
 	healthBar.value = currentHealth * 100 / maxHealth
@@ -57,7 +65,6 @@ func move_8way(delta):
 
 func _on_area_2d_right_body_entered(body): #hitou algo
 	if body.name != 'StaticBody2D':
-		updateScore.emit()
 		body.deal_damage()
 		match current_element:
 			'air': #joga inimigos para tras
@@ -72,6 +79,7 @@ func _on_area_2d_right_body_entered(body): #hitou algo
 			'fire': #insta kill
 				body.hp = 0
 		if body.hp == 0:
+			updateScore.emit()
 			body.queue_free()
 
 func _on_area_2d_body_entered(body): #se ele tomou um hit

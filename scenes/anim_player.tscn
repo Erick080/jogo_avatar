@@ -629,6 +629,20 @@ stream = ExtResource("18_744q3")
 [node name="earth_SFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_iv0s6")
 
+[node name="air_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="earth_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="water_cooldown" type="Timer" parent="."]
+wait_time = 2.019
+one_shot = true
+
+[node name="fire_cooldown" type="Timer" parent="."]
+wait_time = 5.153
+one_shot = true
+
 [connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]
 [connection signal="body_entered" from="AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]
 [connection signal="body_entered" from="AtkLeftMarker/Area2DLeft" to="." method="_on_area_2d_right_body_entered"]

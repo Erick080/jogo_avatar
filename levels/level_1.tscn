@@ -1,96 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://3qqbnw5ymsjf"]
+[gd_scene load_steps=15 format=3 uid="uid://3qqbnw5ymsjf"]
 
 [ext_resource type="PackedScene" uid="uid://eq8k6of4kdut" path="res://scenes/anim_player.tscn" id="1_04jd4"]
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_vjwbh"]
-[ext_resource type="Texture2D" uid="uid://jq6woxyd5af1" path="res://tilesets/set_a.png" id="2_0iblj"]
 [ext_resource type="Texture2D" uid="uid://dkkkfpd4b5g0d" path="res://tilesets/TX Tileset Grass.png" id="4_a6h47"]
 [ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="5_qcptw"]
 [ext_resource type="Texture2D" uid="uid://cyed1u3sqpbww" path="res://sprites/elements-removebg.png" id="6_wpa76"]
 [ext_resource type="Texture2D" uid="uid://dkdqhlfsfmjpr" path="res://sprites/healthbar/no health.png" id="8_1fs6y"]
 [ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="8_ffuox"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kp0u6"]
-texture = ExtResource("2_0iblj")
-texture_region_size = Vector2i(20, 20)
-0:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-8:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-4:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-7:8/0 = 0
-8:8/0 = 0
-9:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-9:9/0 = 0
-8:0/0 = 0
-9:1/0 = 0
-6:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6cna"]
 resource_name = "grass"
@@ -162,7 +78,6 @@ texture_region_size = Vector2i(32, 32)
 0:6/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_dnp2j"]
-sources/0 = SubResource("TileSetAtlasSource_kp0u6")
 sources/1 = SubResource("TileSetAtlasSource_i6cna")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvi5q"]
@@ -198,6 +113,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 scale = Vector2(2.5, 2.5)
 tile_set = SubResource("TileSet_dnp2j")
 format = 2

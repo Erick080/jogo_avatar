@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jq6woxyd5af1"
-path="res://.godot/imported/set_a.png-472b78814f84ae2a26fc22ed9a14a375.ctex"
+uid="uid://cpodmu6l8hetg"
+path="res://.godot/imported/TX Tileset barro.png-7d5cda795ba9acada3753364abe06404.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/set_a.png"
-dest_files=["res://.godot/imported/set_a.png-472b78814f84ae2a26fc22ed9a14a375.ctex"]
+source_file="res://tilesets/TX Tileset barro.png"
+dest_files=["res://.godot/imported/TX Tileset barro.png-7d5cda795ba9acada3753364abe06404.ctex"]
 
 [params]
 

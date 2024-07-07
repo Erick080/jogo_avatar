@@ -213,7 +213,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x31x4")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xi0lv")
 }, {
 "duration": 1.0,
@@ -222,12 +222,12 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wupfh")
 }, {
-"duration": 2.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_p5tvf")
 }],
 "loop": false,
 "name": &"atk_earth",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -583,8 +583,7 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
-animation = &"atk_water"
-frame = 6
+animation = &"atk_earth"
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -655,6 +654,7 @@ shape = SubResource("CapsuleShape2D_rs2jy")
 position = Vector2(116, 13)
 
 [node name="Area2D" type="Area2D" parent="WaterRightMarker"]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterRightMarker/Area2D"]
 position = Vector2(-0.5, 0)
@@ -664,6 +664,7 @@ shape = SubResource("RectangleShape2D_w8unc")
 position = Vector2(-116, 13)
 
 [node name="Area2D" type="Area2D" parent="WaterLeftMarker"]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterLeftMarker/Area2D"]
 position = Vector2(-0.5, 0)

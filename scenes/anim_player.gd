@@ -12,7 +12,7 @@ var currentHealth = maxHealth
 var attacking = false
 var earth = true
 var fire = true
-var current_element #elemento que o jogador seleciona para atacar
+var current_element = "default" #elemento que o jogador seleciona para atacar
 var current_attack = "atk_{element}"
 var current_sfx = "{element}_SFX"
 var ultima_posicao = -1
@@ -72,6 +72,8 @@ func _on_atk_body_entered(body): #hitou algo
 				body.SPEED /= 2
 			'fire': #insta kill
 				body.hp = 0
+			'default':
+				pass
 		if body.hp == 0:
 			updateScore.emit()
 			body.queue_free()
@@ -124,23 +126,22 @@ func verificaPosicao():
 
 func desligarAtaques():
 	match current_element:
-			'air': 
-				$AirRightMarker/Area2D.monitoring = false
-				$AirLeftMarker/Area2D.monitoring = false
-			'earth':
-				$EarthRightMarker/Area2D.monitoring = false
-				$EarthLeftMarker/Area2D.monitoring = false
-			'water':
-				$WaterRightMarker/Area2D.monitoring = false
-				$WaterLeftMarker/Area2D.monitoring = false
-			'fire':
-				$FireRightMarker/Area2D.monitoring = false
-				$FireLeftMarker/Area2D.monitoring = false
+		'air': 
+			$AirRightMarker/Area2D.monitoring = false
+			$AirLeftMarker/Area2D.monitoring = false
+		'earth':
+			$EarthRightMarker/Area2D.monitoring = false
+			$EarthLeftMarker/Area2D.monitoring = false
+		'water':
+			$WaterRightMarker/Area2D.monitoring = false
+			$WaterLeftMarker/Area2D.monitoring = false
+		'fire':
+			$FireRightMarker/Area2D.monitoring = false
+			$FireLeftMarker/Area2D.monitoring = false
 
 func animate():
 	if attacking == true:
 		sprite.play(current_attack.format({"element":current_element}))
-		
 		var sfx = get_node(current_sfx.format({"element":current_element}))
 		var frameStart : int = 0
 		if current_element == "air":
@@ -153,7 +154,7 @@ func animate():
 			frameStart = 2
 			$fire_cooldown.start()
 		elif current_element == "water":
-			frameStart = 0
+			frameStart = 2
 			$water_cooldown.start()
 		if sprite.frame == frameStart:
 			if !sfx.playing:

@@ -7,8 +7,8 @@ func _ready():
 	$HUD/ScoreLabel.set("theme_override_colors/font_color", Color(0, 1, 0))
 	$AnimPlayer.updateScore.connect(_updateScore)
 	$AnimPlayer.gameOver.connect(gameOver)
-	$AnimPlayer.earth = false
-	$AnimPlayer.fire = false
+	$AnimPlayer.earth = true
+	$AnimPlayer.fire = true
 
 func _updateScore():
 	gameScore = gameScore + 1

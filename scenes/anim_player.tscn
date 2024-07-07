@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=92 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://dkteeea0q1bsm" path="res://SFX/small-rock-break-194553.mp3" id="19_iv0s6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
-size = Vector2(46, 96)
+size = Vector2(17, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q28s6"]
 atlas = ExtResource("4_4j5us")
@@ -213,7 +213,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x31x4")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_xi0lv")
 }, {
 "duration": 1.0,
@@ -222,7 +222,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wupfh")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_p5tvf")
 }],
 "loop": false,
@@ -236,13 +236,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lyneb")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b151f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b151f")
-}, {
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_b151f")
 }],
 "loop": false,
@@ -500,7 +494,7 @@ animations = [{
 "speed": 26.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_5glao")
 }],
 "loop": false,
@@ -548,8 +542,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7me4l"]
 size = Vector2(98.5, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tce35"]
-size = Vector2(53, 83)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sjlcu"]
+radius = 18.0
+height = 130.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rs2jy"]
+radius = 22.0
+height = 52.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uidvc"]
+radius = 20.5
+height = 81.0
 
 [node name="AnimPlayer" type="CharacterBody2D"]
 position = Vector2(-3, 0)
@@ -577,41 +580,77 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
-animation = &"atk_fire"
+animation = &"atk_earth"
+frame = 4
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(81, -4)
+position = Vector2(78, -12)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
-animation = &"fire"
+animation = &"earth"
 
-[node name="AtkRightMarker" type="Marker2D" parent="."]
-position = Vector2(88, -3)
+[node name="AirRightMarker" type="Marker2D" parent="."]
+position = Vector2(85, -6)
 gizmo_extents = 58.4
 
-[node name="Area2DRight" type="Area2D" parent="AtkRightMarker"]
+[node name="Area2D" type="Area2D" parent="AirRightMarker"]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkRightMarker/Area2DRight"]
-position = Vector2(-6.5, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirRightMarker/Area2D"]
 shape = SubResource("RectangleShape2D_7me4l")
 
-[node name="AtkLeftMarker" type="Marker2D" parent="."]
-position = Vector2(-76, -3)
+[node name="AirLeftMarker" type="Marker2D" parent="."]
+position = Vector2(-85, -6)
 gizmo_extents = 58.4
 
-[node name="Area2DLeft" type="Area2D" parent="AtkLeftMarker"]
+[node name="Area2D" type="Area2D" parent="AirLeftMarker"]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkLeftMarker/Area2DLeft"]
-position = Vector2(-6.5, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirLeftMarker/Area2D"]
 shape = SubResource("RectangleShape2D_7me4l")
+
+[node name="FireRightMarker" type="Marker2D" parent="."]
+position = Vector2(130, -6)
+
+[node name="Area2D" type="Area2D" parent="FireRightMarker"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireRightMarker/Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sjlcu")
+
+[node name="FireLeftMarker" type="Marker2D" parent="."]
+position = Vector2(-130, -6)
+
+[node name="Area2D" type="Area2D" parent="FireLeftMarker"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireLeftMarker/Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sjlcu")
+
+[node name="EarthRightMarker" type="Marker2D" parent="."]
+position = Vector2(78, -12)
+
+[node name="Area2D" type="Area2D" parent="EarthRightMarker"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EarthRightMarker/Area2D"]
+shape = SubResource("CapsuleShape2D_rs2jy")
+
+[node name="EarthLeftMarker" type="Marker2D" parent="."]
+position = Vector2(-78, -12)
+
+[node name="Area2D" type="Area2D" parent="EarthLeftMarker"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EarthLeftMarker/Area2D"]
+shape = SubResource("CapsuleShape2D_rs2jy")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 7.5)
-shape = SubResource("RectangleShape2D_tce35")
+shape = SubResource("CapsuleShape2D_uidvc")
 
 [node name="RunningGrassSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_17d5g")
@@ -644,6 +683,10 @@ wait_time = 5.153
 one_shot = true
 
 [connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]
-[connection signal="body_entered" from="AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]
-[connection signal="body_entered" from="AtkLeftMarker/Area2DLeft" to="." method="_on_area_2d_right_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AirRightMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="AirLeftMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="FireRightMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="FireLeftMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="EarthRightMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="EarthLeftMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_player_body_entered"]

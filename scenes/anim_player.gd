@@ -10,13 +10,14 @@ signal gameOver
 const maxHealth = 5
 var currentHealth = maxHealth
 var attacking = false
-var earth = false
-var fire = false
+var earth = true
+var fire = true
 var current_element #elemento que o jogador seleciona para atacar
 var current_attack = "atk_{element}"
 var current_sfx = "{element}_SFX"
 var ultima_posicao = -1
 var earth_projectile_intact
+
 func _ready():
 	motion_mode = 1
 	pass
@@ -32,27 +33,19 @@ func get_8way_input():
 		velocity = input_direction * speed
 
 func get_atk_input():
-	if sprite.animation_finished:
-		if Input.is_key_pressed(KEY_LEFT):
-			if $air_cooldown.is_stopped():
-				attacking = true
-				current_element = 'air'
-				$air_cooldown.start()
-		elif Input.is_key_pressed(KEY_RIGHT):
-			if $earth_cooldown.is_stopped() and earth:
-				attacking = true
-				current_element = 'earth'
-				$earth_cooldown.start()
-		elif Input.is_key_pressed(KEY_UP):
-			if $water_cooldown.is_stopped():
-				attacking = true
-				current_element = 'water'
-				$water_cooldown.start()
-		elif Input.is_key_pressed(KEY_DOWN):
-			if $fire_cooldown.is_stopped() and fire:
-				attacking = true
-				current_element = 'fire'
-				$fire_cooldown.start()
+	if !attacking:
+		if Input.is_key_pressed(KEY_LEFT) and $air_cooldown.is_stopped():
+			attacking = true
+			current_element = 'air'
+		elif Input.is_key_pressed(KEY_RIGHT) and $earth_cooldown.is_stopped() and earth:
+			attacking = true
+			current_element = 'earth'
+		elif Input.is_key_pressed(KEY_UP) and $water_cooldown.is_stopped():
+			attacking = true
+			current_element = 'water'
+		elif Input.is_key_pressed(KEY_DOWN) and $fire_cooldown.is_stopped() and fire:
+			attacking = true
+			current_element = 'fire'
 
 func updateHealth():
 	healthBar.value = currentHealth * 100 / maxHealth
@@ -64,8 +57,8 @@ func move_8way(delta):
 	animate()
 	move_and_collide(velocity * delta)
 
-func _on_area_2d_right_body_entered(body): #hitou algo
-	if body.name != 'StaticBody2D':
+func _on_atk_body_entered(body): #hitou algo
+	if body.name != 'StaticBody2D' and body.name != "AnimPlayer":
 		body.deal_damage()
 		match current_element:
 			'air': #joga inimigos para tras
@@ -83,7 +76,7 @@ func _on_area_2d_right_body_entered(body): #hitou algo
 			updateScore.emit()
 			body.queue_free()
 
-func _on_area_2d_body_entered(body): #se ele tomou um hit
+func _on_player_body_entered(body): #se ele tomou um hit
 	if body.name != 'AnimPlayer' and body.name != 'StaticBody2D':
 		print('tomou hit')
 		currentHealth -= 1
@@ -97,30 +90,82 @@ func _on_area_2d_body_entered(body): #se ele tomou um hit
 			body.position.x += 100
 	pass # Replace with function body.
 
+func verificaPosicao():
+	if ultima_posicao == 0:
+		$ElementSprite.flip_h = true
+		match current_element:
+			'air': 
+				$ElementSprite.transform = $AirLeftMarker.transform
+				$AirLeftMarker/Area2D.monitoring = true
+			'earth':
+				$ElementSprite.transform = $EarthLeftMarker.transform
+				$EarthLeftMarker/Area2D.monitoring = true
+			'water':
+				$ElementSprite.transform = $AirLeftMarker.transform
+				$AirLeftMarker/Area2D.monitoring = true
+			'fire':
+				$ElementSprite.transform = $FireLeftMarker.transform
+				$FireLeftMarker/Area2D.monitoring = true
+	else:
+		$ElementSprite.flip_h = false
+		match current_element:
+			'air': 
+				$ElementSprite.transform = $AirRightMarker.transform
+				$AirRightMarker/Area2D.monitoring = true
+			'earth':
+				$ElementSprite.transform = $EarthRightMarker.transform
+				$EarthRightMarker/Area2D.monitoring = true
+			'water':
+				$ElementSprite.transform = $AirRightMarker.transform
+				$AirRightMarker/Area2D.monitoring = true
+			'fire':
+				$ElementSprite.transform = $FireRightMarker.transform
+				$FireRightMarker/Area2D.monitoring = true
+
+func desligarAtaques():
+	match current_element:
+			'air': 
+				$AirRightMarker/Area2D.monitoring = false
+				$AirLeftMarker/Area2D.monitoring = false
+			'earth':
+				$EarthRightMarker/Area2D.monitoring = false
+				$EarthLeftMarker/Area2D.monitoring = false
+			'water':
+				$AirRightMarker/Area2D.monitoring = false
+				$AirLeftMarker/Area2D.monitoring = false
+			'fire':
+				$FireRightMarker/Area2D.monitoring = false
+				$FireLeftMarker/Area2D.monitoring = false
+
 func animate():
 	if attacking == true:
 		sprite.play(current_attack.format({"element":current_element}))
 		
 		var sfx = get_node(current_sfx.format({"element":current_element}))
-		if sprite.frame == 4:
+		var frameStart : int = 0
+		if current_element == "air":
+			frameStart = 4
+			$air_cooldown.start()
+		elif current_element == "earth":
+			frameStart = 4
+			$earth_cooldown.start()
+		elif current_element == "fire":
+			frameStart = 2
+			$fire_cooldown.start()
+		elif current_element == "water":
+			frameStart = 0
+			$water_cooldown.start()
+		if sprite.frame == frameStart:
 			if !sfx.playing:
 				sfx.play()
-			if ultima_posicao == 0:
-				$ElementSprite.transform = $AtkLeftMarker.transform
-				$ElementSprite.flip_h = true
-				$AtkLeftMarker/Area2DLeft.monitoring = true
-			else:
-				$ElementSprite.transform = $AtkRightMarker.transform
-				$ElementSprite.flip_h = false
-				$AtkRightMarker/Area2DRight.monitoring = true
+			verificaPosicao()
 			$ElementSprite.z_index = 1
 			$ElementSprite.play(current_element)
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
 		attacking = false
 		sfx.stop()
-		$AtkLeftMarker/Area2DLeft.monitoring = false
-		$AtkRightMarker/Area2DRight.monitoring = false
+		desligarAtaques()
 	elif velocity.x > 0:
 		if !$RunningGrassSFX.playing:
 			$RunningGrassSFX.play()

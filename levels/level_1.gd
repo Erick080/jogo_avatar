@@ -17,7 +17,7 @@ func gameOver():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if (gameScore >= 5):
+	if (gameScore >= 10):
 		#$Timer2.start()
 		get_parent().goto_scene('res://levels/level_2.tscn')
 	pass

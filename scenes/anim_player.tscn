@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=90 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cuwdw0d647r01" path="res://sprites/water-attack-aang.png" id="5_i0168"]
 [ext_resource type="Texture2D" uid="uid://b1i11davsn514" path="res://sprites/run4.png" id="5_it53o"]
 [ext_resource type="Texture2D" uid="uid://ukx7xcc7lph6" path="res://sprites/stance2.png" id="6_0gkee"]
+[ext_resource type="Texture2D" uid="uid://dds0qr4ih6lrf" path="res://sprites/fire-attack-aang.png" id="6_0yt5g"]
 [ext_resource type="Texture2D" uid="uid://bs1xiavomipgo" path="res://sprites/healthbar/no health bar.png" id="7_ykiev"]
 [ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="8_t1pca"]
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
@@ -15,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://b40iiio3oc5w" path="res://SFX/shortest-wind.wav" id="10_gjkh8"]
 [ext_resource type="Texture2D" uid="uid://po5ppe22pmir" path="res://sprites/earth-attack-skill.png" id="11_dj1s0"]
 [ext_resource type="Texture2D" uid="uid://c6ken1s6e50ug" path="res://sprites/fire-attack-skill.png" id="12_sx3e5"]
+[ext_resource type="AudioStream" uid="uid://cnh7ivf1mkoa8" path="res://SFX/rowing-wave-sound-1-151181.mp3" id="17_85cin"]
+[ext_resource type="AudioStream" uid="uid://c8k8kx075l35" path="res://SFX/fire-magic-6947.mp3" id="18_744q3"]
+[ext_resource type="AudioStream" uid="uid://dkteeea0q1bsm" path="res://SFX/small-rock-break-194553.mp3" id="19_iv0s6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
 size = Vector2(46, 96)
@@ -58,6 +62,18 @@ region = Rect2(168, 0, 56, 45)
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5tvf"]
 atlas = ExtResource("5_cky2e")
 region = Rect2(224, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2lv"]
+atlas = ExtResource("6_0yt5g")
+region = Rect2(0, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyneb"]
+atlas = ExtResource("6_0yt5g")
+region = Rect2(56, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b151f"]
+atlas = ExtResource("6_0yt5g")
+region = Rect2(112, 0, 56, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qu5ek"]
 atlas = ExtResource("5_i0168")
@@ -209,8 +225,28 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p5tvf")
 }],
-"loop": true,
+"loop": false,
 "name": &"atk_earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyneb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b151f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b151f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b151f")
+}],
+"loop": false,
+"name": &"atk_fire",
 "speed": 5.0
 }, {
 "frames": [{
@@ -235,7 +271,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hwi6e")
 }],
-"loop": true,
+"loop": false,
 "name": &"atk_water",
 "speed": 7.0
 }, {
@@ -264,7 +300,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d8gnk")
 }],
-"loop": true,
+"loop": false,
 "name": &"run_left",
 "speed": 8.0
 }, {
@@ -293,7 +329,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6lf64")
 }],
-"loop": true,
+"loop": false,
 "name": &"run_right",
 "speed": 8.0
 }, {
@@ -467,7 +503,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5glao")
 }],
-"loop": true,
+"loop": false,
 "name": &"earth",
 "speed": 5.0
 }, {
@@ -487,7 +523,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_00o51")
 }],
-"loop": true,
+"loop": false,
 "name": &"fire",
 "speed": 5.0
 }, {
@@ -504,7 +540,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_opyre")
 }],
-"loop": true,
+"loop": false,
 "name": &"water",
 "speed": 5.0
 }]
@@ -541,7 +577,7 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
-animation = &"atk_earth"
+animation = &"atk_fire"
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -580,9 +616,18 @@ shape = SubResource("RectangleShape2D_tce35")
 [node name="RunningGrassSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_17d5g")
 
-[node name="WindSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="air_SFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_gjkh8")
 volume_db = 11.742
+
+[node name="water_SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_85cin")
+
+[node name="fire_SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_744q3")
+
+[node name="earth_SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_iv0s6")
 
 [connection signal="animation_finished" from="AangSprite" to="." method="_on_aang_sprite_animation_finished"]
 [connection signal="body_entered" from="AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]

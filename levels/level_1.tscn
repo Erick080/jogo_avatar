@@ -241,6 +241,7 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("6_wpa76")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="Enemy_Spawn1" type="Marker2D" parent="."]

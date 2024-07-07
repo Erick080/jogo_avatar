@@ -12,7 +12,9 @@ var currentHealth = maxHealth
 var attacking = false
 var earth = false
 var fire = false
-var element = "air"
+var current_element #elemento que o jogador seleciona para atacar
+var current_attack = "atk_{element}"
+var current_sfx = "{element}_SFX"
 var ultima_posicao = -1
 
 func _ready():
@@ -30,8 +32,18 @@ func get_8way_input():
 		velocity = input_direction * speed
 
 func get_atk_input():
-	if Input.is_key_pressed(KEY_E):
+	if Input.is_key_pressed(KEY_LEFT):
 		attacking = true
+		current_element = 'air'
+	elif Input.is_key_pressed(KEY_RIGHT):
+		attacking = true
+		current_element = 'earth'
+	elif Input.is_key_pressed(KEY_UP):
+		attacking = true
+		current_element = 'water'
+	elif Input.is_key_pressed(KEY_DOWN):
+		attacking = true
+		current_element = 'fire'
 
 func updateHealth():
 	healthBar.value = currentHealth * 100 / maxHealth
@@ -46,7 +58,21 @@ func move_8way(delta):
 func _on_area_2d_right_body_entered(body): #hitou algo
 	if body.name != 'StaticBody2D':
 		updateScore.emit()
-		body.queue_free()
+		body.deal_damage()
+		match current_element:
+			'air': #joga inimigos para tras
+				if body.velocity.x > 0:
+					body.position.x -= 100
+				else:
+					body.position.x += 100
+			'earth': #stun
+				body.stun_timer.start() 
+			'water': #slow
+				body.SPEED /= 2
+			'fire': #insta kill
+				body.hp = 0
+		if body.hp == 0:
+			body.queue_free()
 
 func _on_area_2d_body_entered(body): #se ele tomou um hit
 	if body.name != 'AnimPlayer' and body.name != 'StaticBody2D':
@@ -64,11 +90,11 @@ func _on_area_2d_body_entered(body): #se ele tomou um hit
 
 func animate():
 	if attacking == true:
-		sprite.play("atk_air")
-		
+		sprite.play(current_attack.format({"element":current_element}))
+		var sfx = get_node(current_sfx.format({"element":current_element}))
 		if sprite.frame == 4:
-			if !$WindSFX.playing:
-				$WindSFX.play()
+			if !sfx.playing:
+				sfx.play()
 			if ultima_posicao == 0:
 				$ElementSprite.transform = $AtkLeftMarker.transform
 				$ElementSprite.flip_h = true
@@ -78,11 +104,11 @@ func animate():
 				$ElementSprite.flip_h = false
 				$AtkRightMarker/Area2DRight.monitoring = true
 			$ElementSprite.z_index = 1
-			$ElementSprite.play("air")
+			$ElementSprite.play(current_element)
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
 		attacking = false
-		$WindSFX.stop()
+		sfx.stop()
 		$AtkLeftMarker/Area2DLeft.monitoring = false
 		$AtkRightMarker/Area2DRight.monitoring = false
 	elif velocity.x > 0:

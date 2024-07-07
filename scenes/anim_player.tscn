@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=93 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
@@ -550,6 +550,9 @@ height = 130.0
 radius = 22.0
 height = 52.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8unc"]
+size = Vector2(161, 72)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uidvc"]
 radius = 20.5
 height = 81.0
@@ -580,14 +583,15 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
-animation = &"atk_earth"
-frame = 4
+animation = &"atk_water"
+frame = 6
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(78, -12)
+position = Vector2(116, 13)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
-animation = &"earth"
+animation = &"water"
+frame = 3
 
 [node name="AirRightMarker" type="Marker2D" parent="."]
 position = Vector2(85, -6)
@@ -647,6 +651,24 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EarthLeftMarker/Area2D"]
 shape = SubResource("CapsuleShape2D_rs2jy")
 
+[node name="WaterRightMarker" type="Marker2D" parent="."]
+position = Vector2(116, 13)
+
+[node name="Area2D" type="Area2D" parent="WaterRightMarker"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterRightMarker/Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_w8unc")
+
+[node name="WaterLeftMarker" type="Marker2D" parent="."]
+position = Vector2(-116, 13)
+
+[node name="Area2D" type="Area2D" parent="WaterLeftMarker"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterLeftMarker/Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_w8unc")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -689,4 +711,6 @@ one_shot = true
 [connection signal="body_entered" from="FireLeftMarker/Area2D" to="." method="_on_atk_body_entered"]
 [connection signal="body_entered" from="EarthRightMarker/Area2D" to="." method="_on_atk_body_entered"]
 [connection signal="body_entered" from="EarthLeftMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="WaterRightMarker/Area2D" to="." method="_on_atk_body_entered"]
+[connection signal="body_entered" from="WaterLeftMarker/Area2D" to="." method="_on_atk_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_player_body_entered"]

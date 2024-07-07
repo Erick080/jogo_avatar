@@ -101,8 +101,8 @@ func verificaPosicao():
 				$ElementSprite.transform = $EarthLeftMarker.transform
 				$EarthLeftMarker/Area2D.monitoring = true
 			'water':
-				$ElementSprite.transform = $AirLeftMarker.transform
-				$AirLeftMarker/Area2D.monitoring = true
+				$ElementSprite.transform = $WaterLeftMarker.transform
+				$WaterLeftMarker/Area2D.monitoring = true
 			'fire':
 				$ElementSprite.transform = $FireLeftMarker.transform
 				$FireLeftMarker/Area2D.monitoring = true
@@ -116,8 +116,8 @@ func verificaPosicao():
 				$ElementSprite.transform = $EarthRightMarker.transform
 				$EarthRightMarker/Area2D.monitoring = true
 			'water':
-				$ElementSprite.transform = $AirRightMarker.transform
-				$AirRightMarker/Area2D.monitoring = true
+				$ElementSprite.transform = $WaterRightMarker.transform
+				$WaterRightMarker/Area2D.monitoring = true
 			'fire':
 				$ElementSprite.transform = $FireRightMarker.transform
 				$FireRightMarker/Area2D.monitoring = true
@@ -131,8 +131,8 @@ func desligarAtaques():
 				$EarthRightMarker/Area2D.monitoring = false
 				$EarthLeftMarker/Area2D.monitoring = false
 			'water':
-				$AirRightMarker/Area2D.monitoring = false
-				$AirLeftMarker/Area2D.monitoring = false
+				$WaterRightMarker/Area2D.monitoring = false
+				$WaterLeftMarker/Area2D.monitoring = false
 			'fire':
 				$FireRightMarker/Area2D.monitoring = false
 				$FireLeftMarker/Area2D.monitoring = false
@@ -166,30 +166,29 @@ func animate():
 		attacking = false
 		sfx.stop()
 		desligarAtaques()
-	elif velocity.x > 0:
-		if !$RunningGrassSFX.playing:
-			$RunningGrassSFX.play()
-		$AangSprite.flip_h = false
-		sprite.play("run_right")
-		ultima_posicao = 1
-	elif velocity.x < 0:
-		if !$RunningGrassSFX.playing:
-			$RunningGrassSFX.play()
-		$AangSprite.flip_h = true 
-		sprite.play("run_right")
-		ultima_posicao = 0
-	elif velocity.y != 0:
-		if !$RunningGrassSFX.playing:
-			$RunningGrassSFX.play()
-		if ultima_posicao == 0:	
-			$AangSprite.flip_h = true
-		else:
-			$AangSprite.flip_h = false
-		sprite.play("run_right")
 	else:
-		$RunningGrassSFX.stop()
-		if ultima_posicao == 0:	
-			$AangSprite.flip_h = true
+		if velocity.x != 0 or velocity.y != 0:
+			if !$RunningGrassSFX.playing:
+				$RunningGrassSFX.play()
 		else:
+			$RunningGrassSFX.stop()
+		if velocity.x > 0:
 			$AangSprite.flip_h = false
-		sprite.play("stance")
+			sprite.play("run_right")
+			ultima_posicao = 1
+		elif velocity.x < 0:
+			$AangSprite.flip_h = true 
+			sprite.play("run_right")
+			ultima_posicao = 0
+		elif velocity.y != 0:
+			if ultima_posicao == 0:	
+				$AangSprite.flip_h = true
+			else:
+				$AangSprite.flip_h = false
+			sprite.play("run_right")
+		else:
+			if ultima_posicao == 0:	
+				$AangSprite.flip_h = true
+			else:
+				$AangSprite.flip_h = false
+			sprite.play("stance")

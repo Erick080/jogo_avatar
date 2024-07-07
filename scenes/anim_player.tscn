@@ -1,8 +1,9 @@
-[gd_scene load_steps=69 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=83 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
 [ext_resource type="Texture2D" uid="uid://dkcvm2j6wce8j" path="res://sprites/runleft.png" id="4_cevyp"]
+[ext_resource type="Texture2D" uid="uid://chtc8twrqwmrb" path="res://sprites/earth-attack-aang.png" id="5_cky2e"]
 [ext_resource type="Texture2D" uid="uid://cuwdw0d647r01" path="res://sprites/water-attack-aang.png" id="5_i0168"]
 [ext_resource type="Texture2D" uid="uid://b1i11davsn514" path="res://sprites/run4.png" id="5_it53o"]
 [ext_resource type="Texture2D" uid="uid://ukx7xcc7lph6" path="res://sprites/stance2.png" id="6_0gkee"]
@@ -12,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://cjser5lfkt5gd" path="res://SFX/running-in-grass-6237.mp3" id="9_17d5g"]
 [ext_resource type="Texture2D" uid="uid://jwrj37q6fjuq" path="res://sprites/water-attack-skill.png" id="9_rjfp0"]
 [ext_resource type="AudioStream" uid="uid://b40iiio3oc5w" path="res://SFX/shortest-wind.wav" id="10_gjkh8"]
+[ext_resource type="Texture2D" uid="uid://po5ppe22pmir" path="res://sprites/earth-attack-skill.png" id="11_dj1s0"]
+[ext_resource type="Texture2D" uid="uid://c6ken1s6e50ug" path="res://sprites/fire-attack-skill.png" id="12_sx3e5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
 size = Vector2(46, 96)
@@ -35,6 +38,26 @@ region = Rect2(117, 0, 39, 47)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ceosb"]
 atlas = ExtResource("4_4j5us")
 region = Rect2(156, 0, 39, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x31x4"]
+atlas = ExtResource("5_cky2e")
+region = Rect2(0, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi0lv"]
+atlas = ExtResource("5_cky2e")
+region = Rect2(56, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mrei"]
+atlas = ExtResource("5_cky2e")
+region = Rect2(112, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wupfh"]
+atlas = ExtResource("5_cky2e")
+region = Rect2(168, 0, 56, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5tvf"]
+atlas = ExtResource("5_cky2e")
+region = Rect2(224, 0, 56, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qu5ek"]
 atlas = ExtResource("5_i0168")
@@ -169,6 +192,26 @@ animations = [{
 "loop": false,
 "name": &"atk_air",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x31x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi0lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mrei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wupfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5tvf")
+}],
+"loop": true,
+"name": &"atk_earth",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -331,6 +374,30 @@ region = Rect2(1188, 0, 99, 48)
 atlas = ExtResource("8_yfas5")
 region = Rect2(1287, 0, 99, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5glao"]
+atlas = ExtResource("11_dj1s0")
+region = Rect2(0, 0, 47, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0pk4"]
+atlas = ExtResource("12_sx3e5")
+region = Rect2(0, 0, 132, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnnq2"]
+atlas = ExtResource("12_sx3e5")
+region = Rect2(132, 0, 132, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrcdd"]
+atlas = ExtResource("12_sx3e5")
+region = Rect2(264, 0, 132, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34jid"]
+atlas = ExtResource("12_sx3e5")
+region = Rect2(396, 0, 132, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00o51"]
+atlas = ExtResource("12_sx3e5")
+region = Rect2(528, 0, 132, 51)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p73gi"]
 atlas = ExtResource("9_rjfp0")
 region = Rect2(0, 0, 160, 72)
@@ -398,6 +465,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5glao")
+}],
+"loop": true,
+"name": &"earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0pk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnnq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrcdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34jid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00o51")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p73gi")
 }, {
 "duration": 1.0,
@@ -446,13 +541,13 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_54ssq")
-animation = &"atk_water"
+animation = &"atk_earth"
 
 [node name="ElementSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(81, -4)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
-animation = &"water"
+animation = &"fire"
 
 [node name="AtkRightMarker" type="Marker2D" parent="."]
 position = Vector2(88, -3)

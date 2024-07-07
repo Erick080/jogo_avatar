@@ -78,7 +78,7 @@ func animate():
 				$ElementSprite.flip_h = false
 				$AtkRightMarker/Area2DRight.monitoring = true
 			$ElementSprite.z_index = 1
-			$ElementSprite.play("test")
+			$ElementSprite.play("air")
 		await $ElementSprite.animation_finished
 		$ElementSprite.z_index = 0
 		attacking = false

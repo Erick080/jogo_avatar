@@ -6,10 +6,14 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	$HUD/ScoreLabel.set("theme_override_colors/font_color", Color(0, 1, 0))
 	$AnimPlayer.updateScore.connect(_updateScore)
+	$AnimPlayer.gameOver.connect(gameOver)
 
 func _updateScore():
 	gameScore = gameScore + 1
 	$HUD/ScoreLabel.text = "Score: " + str(gameScore) 
+
+func gameOver():
+	get_parent().goto_scene('res://levels/game_over.tscn')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -17,12 +21,6 @@ func _process(_delta):
 		#$Timer2.start()
 		get_parent().goto_scene('res://levels/level_2.tscn')
 	pass
-
-var aux_counter = 0
-func _on_area_2d_area_entered(area):
-	aux_counter += 1
-	print(aux_counter)
-
 
 func _on_timer_timeout():
 	var enemy_instance = enemy.instantiate()
@@ -32,8 +30,3 @@ func _on_timer_timeout():
 		enemy_instance.position = $Enemy_Spawn1.position
 	else:
 		enemy_instance.position = $Enemy_Spawn2.position
-
-
-func _on_timer_2_timeout():
-	get_parent().goto_scene('res://levels/level_2.tscn')
-	pass # Replace with function body.

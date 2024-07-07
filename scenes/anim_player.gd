@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var elementSprite = $ElementSprite
 @onready var healthBar = $HealthBar
 signal updateScore
+signal gameOver
 const maxHealth = 5
 var currentHealth = maxHealth
 var attacking = false
@@ -52,6 +53,9 @@ func _on_area_2d_body_entered(body): #se ele tomou um hit
 		print('tomou hit')
 		currentHealth -= 1
 		updateHealth()
+		if currentHealth <= 0:
+			gameOver.emit()
+			pass
 		if body.velocity.x > 0:
 			body.position.x -= 100
 		else:

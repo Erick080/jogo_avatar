@@ -11,12 +11,8 @@
 texture = ExtResource("2_0iblj")
 texture_region_size = Vector2i(20, 20)
 0:0/0 = 0
-1:0/0 = 0
 10:0/0 = 0
 11:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-7:1/0 = 0
 8:1/0 = 0
 10:1/0 = 0
 11:1/0 = 0
@@ -28,8 +24,6 @@ texture_region_size = Vector2i(20, 20)
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
 10:2/0 = 0
 11:2/0 = 0
 0:3/0 = 0
@@ -40,8 +34,6 @@ texture_region_size = Vector2i(20, 20)
 5:3/0 = 0
 6:3/0 = 0
 7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
 2:4/0 = 0
@@ -50,8 +42,6 @@ texture_region_size = Vector2i(20, 20)
 5:4/0 = 0
 6:4/0 = 0
 7:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
 0:5/0 = 0
 1:5/0 = 0
 2:5/0 = 0
@@ -60,8 +50,6 @@ texture_region_size = Vector2i(20, 20)
 5:5/0 = 0
 6:5/0 = 0
 7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
@@ -70,8 +58,6 @@ texture_region_size = Vector2i(20, 20)
 5:6/0 = 0
 6:6/0 = 0
 7:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
 0:7/0 = 0
 1:7/0 = 0
 2:7/0 = 0
@@ -80,8 +66,6 @@ texture_region_size = Vector2i(20, 20)
 5:7/0 = 0
 6:7/0 = 0
 7:7/0 = 0
-8:7/0 = 0
-9:7/0 = 0
 0:8/0 = 0
 1:8/0 = 0
 2:8/0 = 0
@@ -104,6 +88,7 @@ texture_region_size = Vector2i(20, 20)
 9:9/0 = 0
 8:0/0 = 0
 9:1/0 = 0
+6:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6cna"]
 resource_name = "grass"
@@ -264,16 +249,11 @@ position = Vector2(-339, 455)
 [node name="Enemy_Spawn2" type="Marker2D" parent="."]
 position = Vector2(1510, 455)
 
-[node name="Timer2" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
-
 [connection signal="area_entered" from="AnimPlayer/AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_area_entered"]
 [connection signal="body_entered" from="AnimPlayer/AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_entered"]
 [connection signal="body_shape_entered" from="AnimPlayer/AtkRightMarker/Area2DRight" to="." method="_on_area_2d_right_body_shape_entered"]
 [connection signal="area_entered" from="AnimPlayer/AtkLeftMarker/Area2DLeft" to="." method="_on_area_2d_left_area_entered"]
 [connection signal="body_entered" from="AnimPlayer/AtkLeftMarker/Area2DLeft" to="AnimPlayer" method="_on_area_2d_left_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 
 [editable path="AnimPlayer"]

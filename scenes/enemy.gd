@@ -5,7 +5,7 @@ const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 @onready var player = get_node('../AnimPlayer')
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = Vector2.ZERO
 	if player:
 		velocity = position.direction_to(player.position) * SPEED

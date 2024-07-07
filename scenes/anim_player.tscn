@@ -1,10 +1,12 @@
-[gd_scene load_steps=52 format=3 uid="uid://eq8k6of4kdut"]
+[gd_scene load_steps=54 format=3 uid="uid://eq8k6of4kdut"]
 
 [ext_resource type="Script" path="res://scenes/anim_player.gd" id="1_qj2q4"]
 [ext_resource type="Texture2D" uid="uid://bc2ukufjx0pdh" path="res://sprites/air-attack-aang.png" id="4_4j5us"]
 [ext_resource type="Texture2D" uid="uid://dkcvm2j6wce8j" path="res://sprites/runleft.png" id="4_cevyp"]
 [ext_resource type="Texture2D" uid="uid://b1i11davsn514" path="res://sprites/run4.png" id="5_it53o"]
 [ext_resource type="Texture2D" uid="uid://ukx7xcc7lph6" path="res://sprites/stance2.png" id="6_0gkee"]
+[ext_resource type="Texture2D" uid="uid://bs1xiavomipgo" path="res://sprites/healthbar/no health bar.png" id="7_ykiev"]
+[ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="8_t1pca"]
 [ext_resource type="Texture2D" uid="uid://bjh1ss4ajb4tn" path="res://sprites/air-attack-skill.png" id="8_yfas5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g841h"]
@@ -328,7 +330,19 @@ size = Vector2(98.5, 48)
 size = Vector2(53, 83)
 
 [node name="AnimPlayer" type="CharacterBody2D"]
+position = Vector2(-3, 0)
 script = ExtResource("1_qj2q4")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 1
+offset_left = -33.0
+offset_top = 50.0
+offset_right = 95.0
+offset_bottom = 90.0
+scale = Vector2(0.5, 0.8)
+value = 100.0
+texture_under = ExtResource("7_ykiev")
+texture_progress = ExtResource("8_t1pca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g841h")
@@ -348,7 +362,6 @@ texture_filter = 1
 position = Vector2(81, -4)
 sprite_frames = SubResource("SpriteFrames_kt7kk")
 animation = &"test"
-frame = 8
 
 [node name="AtkRightMarker" type="Marker2D" parent="."]
 position = Vector2(88, -3)

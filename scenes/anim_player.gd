@@ -1,29 +1,63 @@
 extends CharacterBody2D
 
 @export var speed = 400.0
+@export var box : PackedScene
 @onready var sprite = $AangSprite
 @onready var elementSprite = $ElementSprite
-@export var box : PackedScene
-var attacking = false
-var element
-var ultima_posicao = -1
+@onready var healthBar = $HealthBar
 signal updateScore
+const maxHealth = 5
+var currentHealth = maxHealth
+var attacking = false
+var earth = false
+var fire = false
+var element = "air"
+var ultima_posicao = -1
 
 func _ready():
 	motion_mode = 1
 	pass
-	
+
+func _physics_process(delta):
+	move_8way(delta)
+
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	if attacking:
 		velocity = input_direction * 0
 	else: 
 		velocity = input_direction * speed
-	
+
 func get_atk_input():
 	if Input.is_key_pressed(KEY_E):
 		attacking = true
-	
+
+func updateHealth():
+	healthBar.value = currentHealth * 100 / maxHealth
+	pass
+
+func move_8way(delta):
+	get_8way_input()
+	get_atk_input()
+	animate()
+	move_and_collide(velocity * delta)
+
+func _on_area_2d_right_body_entered(body): #hitou algo
+	if body.name != 'StaticBody2D':
+		updateScore.emit()
+		body.queue_free()
+
+func _on_area_2d_body_entered(body): #se ele tomou um hit
+	if body.name != 'AnimPlayer' and body.name != 'StaticBody2D':
+		print('tomou hit')
+		currentHealth -= 1
+		updateHealth()
+		if body.velocity.x > 0:
+			body.position.x -= 100
+		else:
+			body.position.x += 100
+	pass # Replace with function body.
+
 func animate():
 	if attacking == true:
 		sprite.play("atk_air")
@@ -63,34 +97,3 @@ func animate():
 		else:
 			$AangSprite.flip_h = false
 		sprite.play("stance")
-		
-var aux_count = 0
-func move_8way(delta):
-	get_8way_input()
-	get_atk_input()
-	animate()
-	var collision_info = move_and_collide(velocity * delta)
-	if collision_info:
-		#velocity = velocity.bounce(collision_info.get_normal())
-		#move_and_collide(velocity * delta * 10)
-		aux_count+=1
-		#print(aux_count)
-	
-func _physics_process(delta):
-	move_8way(delta)
-
-func _on_area_2d_right_body_entered(body):
-	#print(body.name)
-	if body.name != 'StaticBody2D':
-		updateScore.emit()
-		body.queue_free()
-	
-
-func _on_area_2d_body_entered(body): #se ele tomou um hit
-	if body.name != 'AnimPlayer' and body.name != 'StaticBody2D':
-		print('tomou hit')
-		if body.velocity.x > 0:
-			body.position.x -= 100
-		else:
-			body.position.x += 100
-	pass # Replace with function body.

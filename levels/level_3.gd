@@ -10,6 +10,10 @@ func _ready():
 	$AnimPlayer.gameOver.connect(gameOver)
 	$AnimPlayer.earth = true
 	$AnimPlayer.fire = true
+	$AnimPlayer/Camera2D.limit_bottom = $Camera2D.limit_bottom
+	$AnimPlayer/Camera2D.limit_top = $Camera2D.limit_top
+	$AnimPlayer/Camera2D.limit_left = $Camera2D.limit_left
+	$AnimPlayer/Camera2D.limit_right = $Camera2D.limit_right
 	
 func _updateScore():
 	gameScore = gameScore + 1

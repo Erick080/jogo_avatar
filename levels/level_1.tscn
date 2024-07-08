@@ -73,7 +73,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="TileMap" type="TileMap" parent="."]
-texture_filter = 2
+texture_filter = 1
 tile_set = SubResource("TileSet_dnp2j")
 rendering_quadrant_size = 32
 format = 2
@@ -189,6 +189,14 @@ position = Vector2(-339, 455)
 
 [node name="Enemy_Spawn2" type="Marker2D" parent="."]
 position = Vector2(1510, 455)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(63, -91)
+limit_left = -510
+limit_top = -415
+limit_right = 1760
+limit_bottom = 1340
+editor_draw_limits = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

@@ -421,6 +421,13 @@ texture_under = ExtResource("6_uw7ga")
 texture_progress = ExtResource("7_qkhfk")
 metadata/_edit_use_anchors_ = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 200
+limit_top = -700
+limit_right = 2650
+limit_bottom = 1020
+editor_draw_limits = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="AnimPlayer"]

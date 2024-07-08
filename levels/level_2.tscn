@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://eq8k6of4kdut" path="res://scenes/anim_player.tscn" id="1_703kb"]
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_ms1a6"]
-[ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="3_crtau"]
 [ext_resource type="Texture2D" uid="uid://dkkkfpd4b5g0d" path="res://tilesets/TX Tileset Grass.png" id="3_rj7g5"]
+[ext_resource type="FontFile" uid="uid://s0qekwy44ywq" path="res://fonts/HerculanumLTProRoman.TTF" id="4_ih54v"]
 [ext_resource type="Texture2D" uid="uid://cyed1u3sqpbww" path="res://sprites/elements-removebg.png" id="5_27ekm"]
 [ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="6_uw7ga"]
 [ext_resource type="Texture2D" uid="uid://dkdqhlfsfmjpr" path="res://sprites/healthbar/no health.png" id="7_qkhfk"]
@@ -284,7 +284,7 @@ size = Vector2(105.25, 1787.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uii3h"]
 size = Vector2(2539, 81)
 
-[sub_resource type="Theme" id="Theme_cwfmv"]
+[sub_resource type="Theme" id="Theme_vhuoq"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_ms1a6")
@@ -329,7 +329,7 @@ position = Vector2(1465.5, 1062)
 shape = SubResource("RectangleShape2D_uii3h")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 3.0
 autostart = true
 
 [node name="Enemy_Spawn1" type="Marker2D" parent="."]
@@ -339,20 +339,6 @@ position = Vector2(1932, 24)
 position = Vector2(698, 578)
 
 [node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="ScoreLabel" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -118.5
-offset_right = 118.5
-offset_bottom = 61.0
-grow_horizontal = 2
-theme = SubResource("Theme_cwfmv")
-theme_override_fonts/font = ExtResource("3_crtau")
-theme_override_font_sizes/font_size = 50
-text = "Score : 0"
-metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD"]
 position = Vector2(1017, 522)
@@ -406,19 +392,27 @@ texture_under = ExtResource("6_uw7ga")
 texture_progress = ExtResource("7_qkhfk")
 metadata/_edit_use_anchors_ = true
 
-[node name="CooldownBar_Fire" type="TextureProgressBar" parent="HUD"]
-anchors_preset = -1
-anchor_right = 0.017
-anchor_bottom = 0.031
-offset_left = 966.0
-offset_top = 629.0
-offset_right = 1074.42
-offset_bottom = 624.912
-scale = Vector2(0.8, 1)
-value = 100.0
-fill_mode = 1
-texture_under = ExtResource("6_uw7ga")
-texture_progress = ExtResource("7_qkhfk")
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+offset_left = 436.0
+offset_top = -1.0
+offset_right = 668.0
+offset_bottom = 49.0
+color = Color(0.299547, 0.299547, 0.299547, 1)
+
+[node name="ScoreLabel" type="Label" parent="HUD/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.5
+offset_top = 1.0
+offset_right = 142.5
+offset_bottom = 62.0
+grow_horizontal = 2
+theme = SubResource("Theme_vhuoq")
+theme_override_fonts/font = ExtResource("4_ih54v")
+theme_override_font_sizes/font_size = 50
+text = "Score : 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

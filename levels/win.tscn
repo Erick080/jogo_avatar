@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://k4n7opw27k8c"]
 
 [ext_resource type="Script" path="res://levels/win.gd" id="1_lev37"]
-[ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="1_nmg2e"]
+[ext_resource type="FontFile" uid="uid://s0qekwy44ywq" path="res://fonts/HerculanumLTProRoman.TTF" id="2_0gmvu"]
 
 [node name="Win" type="Node2D"]
 script = ExtResource("1_lev37")
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.207843, 0.309804, 1)
+color = Color(2.40654e-08, 0.229806, 0.171843, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
 layout_mode = 1
@@ -30,14 +30,14 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_nmg2e")
+theme_override_fonts/font = ExtResource("2_0gmvu")
 theme_override_font_sizes/font_size = 100
 text = "You win!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_nmg2e")
+theme_override_fonts/font = ExtResource("2_0gmvu")
 theme_override_font_sizes/font_size = 60
 text = "Aperte Enter para jogar de novo!"
 horizontal_alignment = 1

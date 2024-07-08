@@ -4,11 +4,11 @@ var gameScore = 0
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$HUD/ScoreLabel.set("theme_override_colors/font_color", Color(0, 1, 0))
+	#$HUD/ColorRect/ScoreLabel.set("theme_override_colors/font_color", Color(0, 1, 0))
 	$AnimPlayer.updateScore.connect(_updateScore)
 	$AnimPlayer.gameOver.connect(gameOver)
-	$AnimPlayer.earth = true
-	$AnimPlayer.fire = true
+	$AnimPlayer.earth = false
+	$AnimPlayer.fire = false
 	$AnimPlayer/Camera2D.limit_bottom = $Camera2D.limit_bottom
 	$AnimPlayer/Camera2D.limit_top = $Camera2D.limit_top
 	$AnimPlayer/Camera2D.limit_left = $Camera2D.limit_left
@@ -16,7 +16,7 @@ func _ready():
 
 func _updateScore():
 	gameScore = gameScore + 1
-	$HUD/ScoreLabel.text = "Score: " + str(gameScore) 
+	$HUD/ColorRect/ScoreLabel.text = "Score: " + str(gameScore) 
 
 func gameOver():
 	get_parent().goto_scene('res://levels/game_over.tscn')
@@ -25,9 +25,9 @@ func gameOver():
 func _process(_delta):
 	#atualizar barra de cooldown aqui
 	$HUD/CooldownBar_Air.value = ($AnimPlayer/air_cooldown.time_left / $AnimPlayer/air_cooldown.wait_time) * 100
-	$HUD/CooldownBar_Earth.value = ($AnimPlayer/earth_cooldown.time_left / $AnimPlayer/earth_cooldown.wait_time) * 100
+#	$HUD/CooldownBar_Earth.value = ($AnimPlayer/earth_cooldown.time_left / $AnimPlayer/earth_cooldown.wait_time) * 100
 	$HUD/CooldownBar_Water.value = ($AnimPlayer/water_cooldown.time_left / $AnimPlayer/water_cooldown.wait_time) * 100
-	$HUD/CooldownBar_Fire.value = ($AnimPlayer/fire_cooldown.time_left / $AnimPlayer/fire_cooldown.wait_time) * 100
+#	$HUD/CooldownBar_Fire.value = ($AnimPlayer/fire_cooldown.time_left / $AnimPlayer/fire_cooldown.wait_time) * 100
 	if (gameScore >= 10):
 		#$Timer2.start()
 		get_parent().goto_scene('res://levels/level_2.tscn')

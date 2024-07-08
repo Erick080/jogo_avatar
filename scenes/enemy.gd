@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var hp = 5
+var hp = 3
 var SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 @onready var player = get_node('../AnimPlayer')

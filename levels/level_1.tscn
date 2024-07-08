@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://eq8k6of4kdut" path="res://scenes/anim_player.tscn" id="1_04jd4"]
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_vjwbh"]
 [ext_resource type="Texture2D" uid="uid://l3u667tha1iq" path="res://tilesets/Snow.png" id="4_rc28n"]
-[ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="5_qcptw"]
+[ext_resource type="FontFile" uid="uid://s0qekwy44ywq" path="res://fonts/HerculanumLTProRoman.TTF" id="4_uwg3k"]
 [ext_resource type="Texture2D" uid="uid://cyed1u3sqpbww" path="res://sprites/elements-removebg.png" id="6_wpa76"]
 [ext_resource type="Texture2D" uid="uid://dkdqhlfsfmjpr" path="res://sprites/healthbar/no health.png" id="8_1fs6y"]
 [ext_resource type="Texture2D" uid="uid://b78000bxrffpd" path="res://sprites/healthbar/health.png" id="8_ffuox"]
@@ -99,20 +99,6 @@ shape = SubResource("RectangleShape2D_vtjnc")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="ScoreLabel" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -118.5
-offset_right = 118.5
-offset_bottom = 61.0
-grow_horizontal = 2
-theme = SubResource("Theme_c2m2l")
-theme_override_fonts/font = ExtResource("5_qcptw")
-theme_override_font_sizes/font_size = 50
-text = "Score : 0"
-metadata/_edit_use_anchors_ = true
-
 [node name="Sprite2D" type="Sprite2D" parent="HUD"]
 position = Vector2(1017, 522)
 scale = Vector2(0.722, 0.698)
@@ -126,22 +112,6 @@ offset_left = 886.0
 offset_top = 575.0
 offset_right = 994.416
 offset_bottom = 570.912
-rotation = -1.5708
-scale = Vector2(0.8, 1)
-value = 100.0
-fill_mode = 1
-texture_under = ExtResource("8_ffuox")
-texture_progress = ExtResource("8_1fs6y")
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownBar_Earth" type="TextureProgressBar" parent="HUD"]
-anchors_preset = -1
-anchor_right = 0.017
-anchor_bottom = 0.031
-offset_left = 1129.0
-offset_top = 576.0
-offset_right = 1237.42
-offset_bottom = 571.912
 rotation = -1.5708
 scale = Vector2(0.8, 1)
 value = 100.0
@@ -165,23 +135,31 @@ texture_under = ExtResource("8_ffuox")
 texture_progress = ExtResource("8_1fs6y")
 metadata/_edit_use_anchors_ = true
 
-[node name="CooldownBar_Fire" type="TextureProgressBar" parent="HUD"]
-anchors_preset = -1
-anchor_right = 0.017
-anchor_bottom = 0.031
-offset_left = 966.0
-offset_top = 629.0
-offset_right = 1074.42
-offset_bottom = 624.912
-scale = Vector2(0.8, 1)
-value = 100.0
-fill_mode = 1
-texture_under = ExtResource("8_ffuox")
-texture_progress = ExtResource("8_1fs6y")
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+offset_left = 436.0
+offset_top = -1.0
+offset_right = 668.0
+offset_bottom = 49.0
+color = Color(0.299547, 0.299547, 0.299547, 1)
+
+[node name="ScoreLabel" type="Label" parent="HUD/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.5
+offset_top = 1.0
+offset_right = 142.5
+offset_bottom = 62.0
+grow_horizontal = 2
+theme = SubResource("Theme_c2m2l")
+theme_override_fonts/font = ExtResource("4_uwg3k")
+theme_override_font_sizes/font_size = 50
+text = "Score : 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 autostart = true
 
 [node name="Enemy_Spawn1" type="Marker2D" parent="."]

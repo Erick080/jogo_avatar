@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cap4mug7alpkg"]
 
-[ext_resource type="FontFile" uid="uid://dnjuhkvh4vye7" path="res://fonts/Xolonium-Regular.ttf" id="1_6ax1m"]
 [ext_resource type="Script" path="res://levels/game_over.gd" id="1_w0yuu"]
+[ext_resource type="FontFile" uid="uid://s0qekwy44ywq" path="res://fonts/HerculanumLTProRoman.TTF" id="2_ycq5a"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.207843, 0.309804, 1)
+color = Color(0.217671, 0.0203134, 0.0657099, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
 layout_mode = 1
@@ -41,14 +41,14 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_6ax1m")
+theme_override_fonts/font = ExtResource("2_ycq5a")
 theme_override_font_sizes/font_size = 100
 text = "Game Over!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_6ax1m")
+theme_override_fonts/font = ExtResource("2_ycq5a")
 theme_override_font_sizes/font_size = 60
 text = "Aperte Enter para tentar de novo!"
 horizontal_alignment = 1
